@@ -1,0 +1,45 @@
+.splash-container {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.splash7-asap {
+    animation: slideInUp 1s ease-out forwards;
+}
+
+.splash7-text {
+    animation: slideInDown 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(20px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-20px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
