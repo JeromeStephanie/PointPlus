@@ -3,7 +3,6 @@ import { TiShoppingCart } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import { IoMenuOutline } from "react-icons/io5";
 import Point from "../../../../Helper/Point";
-import { FaTimes } from "react-icons/fa";
 import { RiArrowDownSFill } from "react-icons/ri";
 import Dropdown from "../drop-down/Dropdown";
 import { MenuItems } from "../drop-down/menu-items/MenuItems";

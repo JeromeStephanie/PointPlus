@@ -46,34 +46,45 @@ const Header = () => {
     setSearch(e.target.value);
   };
 
+  // exports.search = async(req,res)=>{
+  //   try {
+  //     const {query} = req.query
+  //     const Restaurant = await Resturants.find({name: {$regex: new RegExp(query,'i')}})
+  //     const produt = await products.find({name: {$regex: new RegExp(query,'i')}})
+  //     res.json{Restaurant, produt}
+  //   } catch (error) {
+  //     res.json(error.message);
+  //   }
+  // }
+
   useEffect(() => {
     setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
   }, []);
 
-  useEffect(() => {
-    if (search !== "") {
-      // Filter restaurants based on search term
-      const filteredRestaurants = Resturants.filter((restaurant) =>
-        restaurant.name.toLowerCase().includes(search.toLowerCase())
-      );
+  // useEffect(() => {
+  //   if (search !== "") {
+  //     // Filter restaurants based on search term
+  //     const filteredRestaurants = Resturants.filter((restaurant) =>
+  //       restaurant.name.toLowerCase().includes(search.toLowerCase())
+  //     );
 
-      // Filter products based on search term
-      const filteredProducts = Products.filter((product) =>
-        product.title.toLowerCase().includes(search.toLowerCase())
-      );
+  //     // Filter products based on search term
+  //     const filteredProducts = Products.filter((product) =>
+  //       product.title.toLowerCase().includes(search.toLowerCase())
+  //     );
 
-      setFilteredRestaurants(filteredRestaurants);
-      setFilteredProducts(filteredProducts);
+  //     setFilteredRestaurants(filteredRestaurants);
+  //     setFilteredProducts(filteredProducts);
 
-      // Print filtered results to the console
-      console.log("Filtered Restaurants:", filteredRestaurants);
-      console.log("Filtered Products:", filteredProducts);
-    } else {
-      // Reset filtered lists if search term is empty
-      setFilteredRestaurants([]);
-      setFilteredProducts([]);
-    }
-  }, [search]);
+  //     // Print filtered results to the console
+  //     console.log("Filtered Restaurants:", filteredRestaurants);
+  //     console.log("Filtered Products:", filteredProducts);
+  //   } else {
+  //     // Reset filtered lists if search term is empty
+  //     setFilteredRestaurants([]);
+  //     setFilteredProducts([]);
+  //   }
+  // }, [search]);
 
   const handleClickRestaurant = (resturants) => {
     setSelectedProduct(resturants); // Set the selected restaurant
@@ -85,7 +96,7 @@ const Header = () => {
         <NavLinks />
         <div className="content2 top-[30%] flex flex-col justify-center items-center w-[90%] left-[100%] -translate-x-[-6%] -translate-y-[-30%] gap-[20px]">
           <div className="p-[10px] font-sans h-[150px] mb-[5px] font-semibold text-[30px] w-[100%] flex justify-start items-center text-white">
-            <div className="border-l-4 py-[30px] border-l-amber-500 lg:ml-[200px] pl-[30px] ">
+            <div className="py-[30px] lg:ml-[250px] pl-[30px] ">
               <Typewriter
                 words={[
                   "Your Food Journey Starts Here!",

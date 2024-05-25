@@ -5,11 +5,32 @@ import { IoPencilOutline } from "react-icons/io5";
 import ImageUploadModal from "../person/image-upload/ImageUploadModal";
 import Headers from "../../Helper/Headers";
 import { img_avatar } from "../../Assets";
+import PersonalDetailsModal from "./personal-details/PersonalDetailsModal";
+import ContactDetailsModal from "./contact-details/ContactDetailsModal";
 
 const Person = () => {
   const navigate = useNavigate();
   const [avatar, setAvatar] = useState(null);
   const [isUploadModalOpen, setUploadModalOpen] = useState(false);
+  const [isPersonalDetailsModalOpen, setIsPersonalDetailsModalOpen] =
+    useState(false);
+  const [isContactDetailsModalOpen, setIsContactDetailsModalOpen] =
+    useState(false);
+
+  const handlePersonalDetailsModal = () => {
+    setIsPersonalDetailsModalOpen(true); // Always open the Dashboard
+  };
+
+  const handlePersonalDetailsModalClose = () => {
+    setIsPersonalDetailsModalOpen(false); // Close the Dashboard
+  };
+  const handleContactDetailsModal = () => {
+    setIsContactDetailsModalOpen(true); // Always open the Dashboard
+  };
+
+  const handleContactDetailsModalClose = () => {
+    setIsContactDetailsModalOpen(false); // Close the Dashboard
+  };
 
   const handleViewAllClick = () => {
     navigate("/recentOrders");
@@ -21,17 +42,25 @@ const Person = () => {
 
   const handleImageUpload = (file) => {
     const reader = new FileReader();
-    
+
     reader.onloadend = () => {
       setAvatar(reader.result);
     };
-    
+
     reader.readAsDataURL(file);
   };
 
   return (
     <div className=" flex flex-col">
       <Headers />
+      <PersonalDetailsModal
+        isOpen={isPersonalDetailsModalOpen}
+        onClose={handlePersonalDetailsModalClose}
+      />
+      <ContactDetailsModal
+        isOpen={isContactDetailsModalOpen}
+        onClose={handleContactDetailsModalClose}
+      />
       <div className="p-[30px]">
         <NavLink to="/">
           <FaChevronLeft size={"1.5rem"} />
@@ -62,74 +91,77 @@ const Person = () => {
         onUpload={handleImageUpload}
       />
       <form className="border-b-2 mb-7 border-b-black">
-        <div className=" my-5">
-          <p className="text-left lg:px-[50px] ml-[30px] mb-7 font-semibold text-lg">
-            Personal Details
-          </p>
-          <div className="grid grid-cols-2 lg:px-[50px] text-left border-b-4 border-b-gray-300">
-            <div className="flex flex-col gap-[20px]">
-              <p className="font-semibold ml-[30px]">Name</p>
-              <p className="font-semibold ml-[30px]">User Name</p>
-              <p className="font-semibold ml-[30px]">Date of Birth</p>
-              <p className="font-semibold ml-[30px]">Sex</p>
-              <p className="font-semibold ml-[30px] mb-7">Member Since</p>
+        <div className="my-5">
+          <div className="flex items-center justify-between w-[70%] text-left lg:px-[50px] ml-[30px] mb-7 font-semibold text-lg">
+            <p className="">Personal Details</p>
+            <p
+              onClick={handlePersonalDetailsModal}
+              className="text-amber-500 font-bold"
+            >
+              Edit
+            </p>
+          </div>
+          <div className="flex lg:px-[50px] w-full flex-col gap-[10px] text-left border-b-4 border-b-gray-300">
+            <div className="flex w-full justify-between">
+              <p className="font-semibold ml-[30px] w-[50%]">Name</p>
+              <input
+                type="text"
+                className="text-left focus:border-b-2 px-[10px] focus:border-b-gray-300 outline-0 w-[50%]"
+              />
             </div>
-            <div className="flex flex-col mr-[30px]">
-              <div className="flex items-center gap-[10px] w-[100%] pl-0 p-[10px]">
-                <input type="text" className="text-left outline-0 w-[100%]" />
-                <button className="flex justify-center items-center">
-                  <IoPencilOutline />
-                </button>
-              </div>
-              <div className="flex items-center gap-[10px] w-[100%] pl-0  px-[10px]">
-                <input type="text" className="text-left outline-0 w-[100%]" />
-                <button className="flex justify-center items-center">
-                  <IoPencilOutline />
-                </button>
-              </div>
-              <div className="flex items-center gap-[10px] w-[100%] pl-0 p-[10px]">
-                <input type="date" className="text-left outline-0 w-[100%]" />
-                <button className="flex justify-center items-center">
-                  <IoPencilOutline />
-                </button>
-              </div>
-              <div className="flex items-center gap-[10px] w-[100%] pl-0 p-[10px]">
-                <input type="text" className="text-left outline-0 w-[100%]" />
-                <button className="flex justify-center items-center">
-                  <IoPencilOutline />
-                </button>
-              </div>
-              <span className="mt-5 mb-7">2nd, May, 2020</span>
+            <div className="flex w-full justify-between">
+              <p className="font-semibold ml-[30px] w-[50%]">User Name</p>
+              <input
+                type="text"
+                className="text-left focus:border-b-2 focus:border-b-gray-300 outline-0 w-[50%]"
+              />
+            </div>
+            <div className="flex w-full justify-between">
+              <p className="font-semibold ml-[30px] w-[50%]">Date of Birth</p>
+              <input
+                type="date"
+                className="text-left focus:border-b-2 px-[10px] focus:border-b-gray-300 outline-0 w-[50%]"
+              />
+            </div>
+            <div className="flex w-full items-center justify-between">
+              <p className="font-semibold ml-[30px] w-[50%]">Sex</p>
+              <input
+                type="text"
+                className="text-left focus:border-b-2 px-[10px] focus:border-b-gray-300 outline-0 w-[50%]"
+              />
+            </div>
+            <div className="flex mb-7 items-center w-full justify-between">
+              <p className="font-semibold ml-[30px] w-[50%]">Member Since</p>
+              <span className="w-[50%] px-[10px]">2nd, May, 2020</span>
             </div>
           </div>
-          <p className="text-left lg:px-[50px] ml-[30px] my-7 font-semibold text-lg">
-            Contact Details
-          </p>
-          <div className="grid grid-cols-2 lg:px-[50px] text-left">
-            <div className="flex flex-col ml-[30px] gap-[20px]">
-              <p className="font-semibold">Email Address</p>
-              <p className="font-semibold">Phone Number</p>
+          <div className="flex items-center justify-between w-[70%] text-left lg:px-[50px] ml-[30px] my-7 font-semibold text-lg">
+            <p className="">Contact Details</p>
+            <p className="text-amber-500" onClick={handleContactDetailsModal}>
+              Edit
+            </p>
+          </div>
+          <div className="flex w-full flex-col gap-[10px] lg:px-[50px] text-left">
+            <div className="flex w-full items-center justify-between">
+              <p className="font-semibold ml-[30px] w-[50%]">Email Address</p>
+              <input
+                type="text"
+                className="text-left focus:border-b-2 px-[10px] focus:border-b-gray-300 outline-0 w-[50%]"
+              />
             </div>
-            <div className="flex flex-col mr-[30px]">
-              <div className="flex items-center gap-[10px] w-[100%] pl-0 p-[10px]">
-                <input type="email" className="text-left outline-0 w-[100%]" />
-                <button className="flex justify-center items-center">
-                  <IoPencilOutline />
-                </button>
-              </div>
-              <div className="flex items-center border gap-[10px] w-[100%] pl-0  px-[10px]">
-                <input type="text" className="text-left outline-0 w-[100%]" />
-                <button className="flex justify-center items-center">
-                  <IoPencilOutline />
-                </button>
-              </div>
+            <div className="flex w-full items-center justify-between">
+              <p className="font-semibold ml-[30px] w-[50%]">Phone Number</p>
+              <input
+                type="text"
+                className="text-left focus:border-b-2 px-[10px] focus:border-b-gray-300 outline-0 w-[50%]"
+              />
             </div>
           </div>
-          <div className="mt-[30px] w-full text-right">
+          {/* <div className="mt-[30px] w-full text-right">
             <button className="bg-amber-500 button drop-shadow-xl shadow-[0px_4px_10px_#00000026] w-[30%] font-semibold text-lg border border-hidden mr-[30px] p-[10px] rounded-[10px]">
               Save Information
             </button>
-          </div>
+          </div> */}
         </div>
       </form>
       <div>

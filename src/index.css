@@ -584,6 +584,10 @@ body {
     padding-top: 5px;
   }
 
+  .Favorites {
+    margin-top: 50px;
+  }
+
   .Favorites,
   .NavLink,
   .Headers,
