@@ -19,7 +19,8 @@ import Splash7 from './Helper/Splash7'
 import VerifyPay from './Helper/VerifyPay'
 import Footer from './Helper/Footer'
 import FavoritesPage from './Components/favorites/FavoritesPage'
-
+import Products from './Components/home/Products' // Adjust import path if needed
+import Header from './Components/home/Header/Header'
 
 const Layout = () => {
   return (
@@ -34,6 +35,22 @@ const Layout = () => {
 
 const App = () => {
   const [loading, setLoading] = useState(true)
+  const [favoriteProducts, setFavoriteProducts] = useState([])
+  const [products] = useState(Products)
+
+  const handleAddFavorite = product => {
+    setFavoriteProducts(prevFavorites =>
+      prevFavorites.includes(product.id)
+        ? prevFavorites
+        : [...prevFavorites, product.id]
+    )
+  }
+
+  const handleRemoveFavorite = product => {
+    setFavoriteProducts(prevFavorites =>
+      prevFavorites.filter(id => id !== product.id)
+    )
+  }
 
   useEffect(() => {
     const fetchData = () => {
@@ -48,30 +65,50 @@ const App = () => {
   return (
     <Router>
       {loading ? (
-        <Splash7/>
+        <Splash7 />
       ) : (
         <div className='app-container'>
           <div className='flex'>
-            <Sidebar/>
+            <Sidebar />
             <div className='Routes overflow-y-scroll ml-0 max-h-[calc(100vh)] w-[100%]'>
               <Routes>
                 <Route path='/' element={<Layout />}>
-                  <Route index element={<Home />} />
-                  <Route path='/person' element={<Person />} />
-                  <Route path='/favs' element={<FavoritesPage />} />
-                  <Route path='/recentOrders' element={<RecentOrders />} />
-                  <Route path='/checkout' element={<CheckOut />} />
-                  <Route path='/verify' element={<VerifyPay />} />
-                  <Route path='/sidebar' element={<Sidebar />} />
-                  <Route path='/orders' element={<Order />} />
-                  <Route path='/riders' element={<Riders />} />
-                  <Route path='/aboutus' element={<AboutUs />} />
-                  <Route path='/restaurants' element={<Restaurants />} />
-                  <Route path='/categories' element={<Categories />} />
+                  <Route
+                    index
+                    element={
+                      <Header
+                        favoriteProducts={favoriteProducts}
+                        setFavoriteProducts={setFavoriteProducts}
+                        products={products}
+                        onAddFavorite={handleAddFavorite}
+                        onRemoveFavorite={handleRemoveFavorite}
+                      />
+                    }
+                  />
+                  <Route path='home' element={<Home />} />
+                  <Route path='person' element={<Person />} />
+                  <Route path='recentOrders' element={<RecentOrders />} />
+                  <Route path='checkout' element={<CheckOut />} />
+                  <Route path='verify' element={<VerifyPay />} />
+                  <Route path='sidebar' element={<Sidebar />} />
+                  <Route path='orders' element={<Order />} />
+                  <Route path='riders' element={<Riders />} />
+                  <Route path='aboutus' element={<AboutUs />} />
+                  <Route path='restaurants' element={<Restaurants />} />
+                  <Route path='categories' element={<Categories />} />
+                  <Route
+                    path='favs'
+                    element={
+                      <FavoritesPage
+                        favoriteProducts={favoriteProducts}
+                        products={products}
+                        onRemoveFavorite={handleRemoveFavorite}
+                      />
+                    }
+                  />
                 </Route>
               </Routes>
             </div>
-            
           </div>
         </div>
       )}

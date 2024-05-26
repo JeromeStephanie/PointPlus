@@ -6,16 +6,10 @@ import AddToCartButton from "../../../../Helper/AddToCartButton";
 import { Link } from "react-router-dom";
 import { FaArrowRightLong } from "react-icons/fa6";
 
-const Favorites = ({ favoriteProducts, onRemoveFavorite }) => {
-  const [products] = useState(Products);
-
-  const favoriteDetails = products.filter((product) =>
+const Favorites = ({ favoriteProducts, products, onRemoveFavorite }) => {
+  const favoriteItems = products.filter((product) =>
     favoriteProducts.includes(product.id)
   );
-
-  const handleRemoveFavorite = (product) => {
-    onRemoveFavorite(product); // Call the parent function to remove the product from favorites
-  };
 
   return (
     <div className="Favorites lg:p-[50px] w-full">
@@ -27,10 +21,12 @@ const Favorites = ({ favoriteProducts, onRemoveFavorite }) => {
             <div className="flex justify-center items-center">
               <RiHeartAddFill size={"1.5rem"} className="text-amber-500" />
             </div>
-            <p className="text-[25px] [font-family:var(--h-3-font-family)] font-semibold">Favorites</p>
+            <p className="text-[25px] [font-family:var(--h-3-font-family)] font-semibold">
+              Favorites
+            </p>
           </div>
           <div className="flex ">
-            {favoriteDetails.map((product) => (
+            {favoriteItems.slice(0, 4).map((product) => (
               <div
                 key={product.id}
                 className="box m-[5px] h-auto min-w-[250px] rounded-[15px] mb-[20px] drop-shadow-xl bg-[#ffa5004c] shadow-[0px_4px_10px_#00000026]"
@@ -59,7 +55,7 @@ const Favorites = ({ favoriteProducts, onRemoveFavorite }) => {
                   </div>
                 </div>
                 <span
-                  onClick={() => handleRemoveFavorite(product)}
+                  onClick={() => onRemoveFavorite(product)}
                   className={`absolute flex justify-center items-center top-4 right-4 border rounded-[20px] p-1 pt-[6px] cursor-pointer ${
                     favoriteProducts.includes(product.id)
                       ? "text-red-500 bg-white"
@@ -73,14 +69,15 @@ const Favorites = ({ favoriteProducts, onRemoveFavorite }) => {
           </div>
         </div>
       )}
-      {favoriteProducts.length === 4 && (
-        <Link
-            to={"/favs"}
-            className="w-full flex cursor-pointer pl-[30px] transform transition-transform duration-300 hover:scale-105 text-amber-500 justify-start items-center gap-[10px]"
+      {favoriteItems.length > 4 && (
+        <div className="mt-4 text-center">
+          <Link
+            to="/favs"
+            className="text-amber-500 text-[25px] font-semibold"
           >
-            <p className="text-[25px] font-semibold ">See All</p>
-            <FaArrowRightLong size={"1.5rem"} />
+            View All Favorites
           </Link>
+        </div>
       )}
     </div>
   );

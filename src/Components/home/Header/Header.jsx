@@ -15,17 +15,19 @@ import NavLinks from "../Header/nav-links/NavLinks"
 import { LuThumbsUp } from "react-icons/lu";
 import Favorites from "./favorite/Favorites";
 
-const Header = () => {
+const Header = ({
+  favoriteProducts,
+  setFavoriteProducts,
+  products
+}) => {
   const [rest] = useState(Resturants);
   const [error, setError] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null); // State to hold selected product details
   const [search, setSearch] = useState("");
-  const [products] = useState(Products);
   const [width, setWidth] = useState(0);
   const carousel = useRef();
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [favoriteProducts, setFavoriteProducts] = useState([]);
 
   const handleFavoriteClick = (product) => {
     setFavoriteProducts((prevFavorites) =>
