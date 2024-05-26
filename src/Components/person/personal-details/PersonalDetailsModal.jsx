@@ -1,7 +1,7 @@
 import React from 'react'
 import { IoClose } from 'react-icons/io5';
 import { FaUserLarge } from "react-icons/fa6";
-import { FaUserPlus } from "react-icons/fa6";
+import { MdEmail } from 'react-icons/md';
 
 const PersonalDetailsModal = ({ isOpen, onClose }) => {
   return (
@@ -22,21 +22,21 @@ const PersonalDetailsModal = ({ isOpen, onClose }) => {
                   </div>
                   <input
                     type="text"
-                    className=" w-full py-2 px-2 rounded-[20px] border-r text-gray-700 leading-tight focus:outline-none"
+                    className=" w-full py-2 px-2 rounded-[20px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     placeholder="Name"
                   />
                 </div>
               </div>
               <div className="text-left">
-                <p className="font-semibold">Username</p>
+                <p className="font-semibold">Email</p>
                 <div className="flex my-3 p-[10px] bg-white items-center drop-shadow-xl shadow-[0px_4px_10px_#00000026] appearance-none border rounded-[20px]">
                   <div className="p-[10px]">
-                    <FaUserPlus size={"1.5rem"} />
+                    <MdEmail size={"1.5rem"} />
                   </div>
                   <input
-                    type="text"
-                    className=" w-full py-2 px-2 rounded-[20px] border-r text-gray-700 leading-tight focus:outline-none"
-                    placeholder="Username"
+                    type="email"
+                    className=" w-full py-2 px-2 rounded-[20px] text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="Email"
                   />
                 </div>
               </div>

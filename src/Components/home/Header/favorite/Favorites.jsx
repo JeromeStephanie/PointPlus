@@ -4,6 +4,7 @@ import { BsFillHeartFill } from "react-icons/bs";
 import { RiHeartAddFill } from "react-icons/ri";
 import AddToCartButton from "../../../../Helper/AddToCartButton";
 import { Link } from "react-router-dom";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 const Favorites = ({ favoriteProducts, onRemoveFavorite }) => {
   const [products] = useState(Products);
@@ -28,7 +29,7 @@ const Favorites = ({ favoriteProducts, onRemoveFavorite }) => {
             </div>
             <p className="text-[25px] [font-family:var(--h-3-font-family)] font-semibold">Favorites</p>
           </div>
-          <div className="flex overflow-auto">
+          <div className="flex ">
             {favoriteDetails.map((product) => (
               <div
                 key={product.id}
@@ -72,13 +73,14 @@ const Favorites = ({ favoriteProducts, onRemoveFavorite }) => {
           </div>
         </div>
       )}
-      {favoriteProducts.length === 5 && (
-        <div className="text-[14px] text-gray-500 mt-4">
-          You have reached the limit of 5 favorite products.
-          <Link to={"/favs"} className="text-blue-500">
-            View all favorite products
+      {favoriteProducts.length === 4 && (
+        <Link
+            to={"/favs"}
+            className="w-full flex cursor-pointer pl-[30px] transform transition-transform duration-300 hover:scale-105 text-amber-500 justify-start items-center gap-[10px]"
+          >
+            <p className="text-[25px] font-semibold ">See All</p>
+            <FaArrowRightLong size={"1.5rem"} />
           </Link>
-        </div>
       )}
     </div>
   );

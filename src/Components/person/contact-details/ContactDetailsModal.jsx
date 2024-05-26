@@ -1,45 +1,31 @@
-import React from 'react'
-import { IoClose } from 'react-icons/io5';
-import { MdEmail } from "react-icons/md";
-import { FaUserPlus } from 'react-icons/fa6';
+import React from "react";
+import { IoClose } from "react-icons/io5";
+import { phone } from "../../../Assets";
+import PhoneNumberInput from "../phone-input/PhoneNumberInput";
 
 const ContactDetailsModal = ({ isOpen, onClose }) => {
   return (
     <div>
       {isOpen && (
         <div className="modal-overlay">
-          <form className="modal-content card_details rounded-[20px] p-[20px] px-[40px] w-[90%] lg:w-[50%] h-auto flex-col xl:w-[50%] overflow-hidden overflow-y-auto drop-shadow-xl bg-white shadow-[0px_4px_10px_#00000026]">
-            <p className="text-[25px] text-center w-full font-semibold">
-              Contact Details
+          <form className="modal-content card_details rounded-[20px] p-[20px] px-[40px] w-[100%] lg:w-[36%] h-auto flex-col xl:w-[36%] drop-shadow-xl bg-white shadow-[0px_4px_10px_#00000026]">
+            <div className="flex justify-center p-[5px] rounded-[80px] w-[20%] bg-amber-500 center items-center">
+              <img src={phone} height={"30px"} alt="phone" />
+            </div>
+            <p className="text-[24px] mt-[5px] text-left w-full font-semibold">
+              Add phone number
             </p>
-
-            <div className="border bg-gray-200 mt-[20px] rounded-[20px] p-[20px] drop-shadow-xl shadow-[0px_4px_10px_#00000026]">
+            <p className="mt-[20px]">
+              <span className="text-gray-600 font-medium">
+                Your phone number is already verified.
+              </span>{" "}
+              To change it, you'll need to verify the new one.
+            </p>
+            <div className="border flex flex-col gap-[10px] bg-gray-200 mt-[20px] rounded-[20px] p-[20px] drop-shadow-xl shadow-[0px_4px_10px_#00000026]">
               <div className="text-left">
-                <p className="font-semibold">Email</p>
-                <div className="flex my-3 p-[10px] bg-white items-center drop-shadow-xl shadow-[0px_4px_10px_#00000026] appearance-none border rounded-[20px]">
-                  <div className="p-[10px]">
-                    <MdEmail size={"1.5rem"} />
-                  </div>
-                  <input
-                    type="text"
-                    className=" w-full py-2 px-2 rounded-[20px] border-r text-gray-700 leading-tight focus:outline-none"
-                    placeholder="Email"
-                  />
-                </div>
+                <p className="font-semibold">Phone</p>
               </div>
-              <div className="text-left">
-                <p className="font-semibold">Username</p>
-                <div className="flex my-3 p-[10px] bg-white items-center drop-shadow-xl shadow-[0px_4px_10px_#00000026] appearance-none border rounded-[20px]">
-                  <div className="p-[10px]">
-                    <FaUserPlus size={"1.5rem"} />
-                  </div>
-                  <input
-                    type="text"
-                    className=" w-full py-2 px-2 rounded-[20px] border-r text-gray-700 leading-tight focus:outline-none"
-                    placeholder="Input card number"
-                  />
-                </div>
-              </div>
+              <PhoneNumberInput />
             </div>
             <span
               onClick={onClose}
@@ -47,19 +33,23 @@ const ContactDetailsModal = ({ isOpen, onClose }) => {
             >
               <IoClose size={"1.5rem"} />
             </span>
-            <div className="flex justify-center mt-[30px] items-center w-full">
+            <div className="flex justify-center gap-[20px] mt-[30px] items-center w-full">
               <button
-                className="bg-amber-500 text-[24px] rounded-[20px] drop-shadow-xl shadow-[0px_4px_10px_#00000026] w-[80%] p-[10px] text-white font-semibold"
+                className="bg-amber-500 text-[20px] rounded-[20px] shadow-[0px_4px_10px_#00000026] w-[80%] p-[7px] text-white font-semibold"
                 type="submit"
               >
-                Save
+                SMS
               </button>
+              <button
+                className="bg-amber-500 text-[18px] rounded-[20px] shadow-[0px_4px_10px_#00000026] w-[80%] p-[7px] text-white font-semibold"
+                type="submit"
+              >WhatsApp</button>
             </div>
           </form>
         </div>
       )}
     </div>
   );
-}
+};
 
-export default ContactDetailsModal
+export default ContactDetailsModal;
