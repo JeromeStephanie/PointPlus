@@ -58,8 +58,6 @@ export default function NavLinks() {
   const handleClick = () => setClick(!click);
   console.log(handleClick);
 
-  const closeMobileMenu = () => setClick(false);
-
   return (
     <div className="w-full NavLink pb-[20px] px-[50px] h-20 border-b-[1px] border-b-white left-0 sticky top-0 z-50 bg-transparent drop-shadow-xl shadow-[0px_4px_10px_#00000026]">
       <div className="flex flex-col h-20 items-center justify-center">
