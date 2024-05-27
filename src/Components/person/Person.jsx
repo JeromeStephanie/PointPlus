@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { FaChevronLeft } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
-import { IoPencilOutline } from "react-icons/io5";
 import ImageUploadModal from "../person/image-upload/ImageUploadModal";
 import Headers from "../../Helper/Headers";
 import { img_avatar } from "../../Assets";
 import PersonalDetailsModal from "./personal-details/PersonalDetailsModal";
 import ContactDetailsModal from "./contact-details/ContactDetailsModal";
-import PhoneDetailsModal from "./phone-details/PhoneDetailsModal";
+import PassDetailsModal from "./password-details/PassDetailsModal";
 
 const Person = () => {
   const navigate = useNavigate();
@@ -15,7 +14,7 @@ const Person = () => {
   const [isUploadModalOpen, setUploadModalOpen] = useState(false);
   const [isPersonalDetailsModalOpen, setIsPersonalDetailsModalOpen] = useState(false);
   const [isContactDetailsModalOpen, setIsContactDetailsModalOpen] = useState(false);
-  const [isPhoneDetailsModalOpen, setIsPhoneDetailsModalOpen] = useState(false);
+  const [isPassDetailsModalOpen, setIsPassDetailsModalOpen] = useState(false);
 
   const handlePersonalDetailsModal = () => {
     setIsPersonalDetailsModalOpen(true); // Always open the Dashboard
@@ -31,12 +30,12 @@ const Person = () => {
   const handleContactDetailsModalClose = () => {
     setIsContactDetailsModalOpen(false); // Close the Dashboard
   };
-  const handlePhoneDetailsModal = () => {
-    setIsPhoneDetailsModalOpen(true); // Always open the Dashboard
+  const handlePassDetailsModal = () => {
+    setIsPassDetailsModalOpen(true); // Always open the Dashboard
   };
 
-  const handlePhoneDetailsModalClose = () => {
-    setIsPhoneDetailsModalOpen(false); // Close the Dashboard
+  const handlePassDetailsModalClose = () => {
+    setIsPassDetailsModalOpen(false); // Close the Dashboard
   };
 
   const handleViewAllClick = () => {
@@ -68,9 +67,9 @@ const Person = () => {
         isOpen={isContactDetailsModalOpen}
         onClose={handleContactDetailsModalClose}
       />
-      <PhoneDetailsModal
-        isOpen={isPhoneDetailsModalOpen}
-        onClose={handlePhoneDetailsModalClose}
+      <PassDetailsModal
+        isOpen={isPassDetailsModalOpen}
+        onClose={handlePassDetailsModalClose}
       />
       <div className="p-[30px]">
         <NavLink to="/">
@@ -133,11 +132,11 @@ const Person = () => {
             </div>
           </div>
           <div className="text-left lg:px-[50px] border-b-4 border-b-gray-300">
-            <div className="flex items-center my-7 justify-between text-lg font-semibold ml-[30px] w-[70%]">
+            <div className="flex items-center my-7 justify-between text-lg font-semibold ml-[30px] w-[68%]">
               <p className="">Other Details</p>
               <p
                 className="text-amber-500 font-bold cursor-pointer"
-                onClick={handlePhoneDetailsModal}
+                onClick={handlePassDetailsModal}
               >
                 Edit
               </p>

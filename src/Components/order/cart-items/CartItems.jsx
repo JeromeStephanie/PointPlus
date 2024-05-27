@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import AddToCartButton from "../../../Helper/AddToCartButton";
 import { ProductContext } from "../../../Context/ProductContext";
 import { FaTrashAlt } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { empty_cart } from "../../../Assets";
 import { FaArrowLeftLong } from "react-icons/fa6";
 

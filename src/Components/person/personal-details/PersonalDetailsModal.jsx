@@ -9,11 +9,11 @@ const PersonalDetailsModal = ({ isOpen, onClose }) => {
       {isOpen && (
         <div className="modal-overlay">
           <form className="modal-content card_details rounded-[20px] p-[20px] px-[40px] w-[90%] lg:w-[50%] h-auto flex-col xl:w-[50%] overflow-hidden overflow-y-auto drop-shadow-xl bg-white shadow-[0px_4px_10px_#00000026]">
-            <p className="text-[25px] text-center w-full font-semibold">
+            <p className="text-[25px] tracking-wide text-center w-full font-semibold">
               Personal Details
             </p>
 
-            <div className="border bg-gray-200 mt-[20px] rounded-[20px] p-[20px] drop-shadow-xl shadow-[0px_4px_10px_#00000026]">
+            <div className="border bg-gray-200 text-[20px] tracking-wide mt-[20px] rounded-[20px] p-[20px] drop-shadow-xl shadow-[0px_4px_10px_#00000026]">
               <div className="text-left">
                 <p className="font-semibold">Name</p>
                 <div className="flex my-3 p-[10px] bg-white items-center drop-shadow-xl shadow-[0px_4px_10px_#00000026] appearance-none border rounded-[20px]">
@@ -49,7 +49,7 @@ const PersonalDetailsModal = ({ isOpen, onClose }) => {
             </span>
             <div className="flex justify-center mt-[30px] items-center w-full">
               <button
-                className="bg-amber-500 text-[24px] rounded-[20px] drop-shadow-xl shadow-[0px_4px_10px_#00000026] w-[80%] p-[10px] text-white font-semibold"
+                className="bg-amber-500 text-[20px] rounded-[20px] drop-shadow-xl shadow-[0px_4px_10px_#00000026] w-[80%] p-[10px] text-white font-semibold"
                 type="submit"
               >
                 Save

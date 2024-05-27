@@ -8,11 +8,11 @@
 }
 
 
-/* @layer components {
+@layer components {
   .all-\[unset\] {
     all: unset;
   }
-} */
+}
 
 :root {
   --b-2-font-family: "OpenSans-Regular", Helvetica;
@@ -552,8 +552,14 @@ body {
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 500px) {
+  .products {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    height: auto;
+  }
+}
 
+@media screen and (max-width: 767px) {
   .sidebar-container {
     display: none;
   }
@@ -614,7 +620,7 @@ body {
   }
 }
 
-@media screen and (min-width: 1104px) {
+@media screen and (min-width: 1020px) {
   .nav-menu {
     display: none;
   }
@@ -624,8 +630,6 @@ body {
   .card {
     padding-top: 150px;
   }
-
-
 }
 
 @media screen and (max-width: 621px) {

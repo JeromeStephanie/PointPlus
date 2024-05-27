@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { TiShoppingCart } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import { IoMenuOutline } from "react-icons/io5";
@@ -8,6 +8,7 @@ import Dropdown from "../drop-down/Dropdown";
 import { MenuItems } from "../drop-down/menu-items/MenuItems";
 import LoginModal from "../../login/LoginModal";
 import Dashboard from "../../dashboard/Dashboard";
+import { img_avatar } from "../../../../Assets";
 
 export default function NavLinks() {
   const [click, setClick] = useState(false);
@@ -16,6 +17,18 @@ export default function NavLinks() {
   const [selectedItem, setSelectedItem] = useState("Customer");
   const [loginModalOpen, setLoginModalOpen] = useState("");
   const [isDashboardModalOpen, setIsDashboardModalOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef();
+  const imgRef = useRef();
+
+  window.addEventListener('click', (e) => {
+    console.log(e.target === menuRef.current);
+    if (e.target !== menuRef.current && e.target !== imgRef.current) {
+      setOpen(false);
+    };
+  });
+
+  const Menu = ["Profile", "Logout"];
 
   const handleToggleModal = () => {
     setIsDashboardModalOpen(true); // Always open the Dashboard
@@ -24,7 +37,6 @@ export default function NavLinks() {
   const handleToggleModalClose = () => {
     setIsDashboardModalOpen(false); // Close the Dashboard
   };
-
 
   const handleLoginModalClose = () => {
     setLoginModalOpen(false);
@@ -50,7 +62,7 @@ export default function NavLinks() {
 
   return (
     <div className="w-full NavLink pb-[20px] px-[50px] h-20 border-b-[1px] border-b-white left-0 sticky top-0 z-50 bg-transparent drop-shadow-xl shadow-[0px_4px_10px_#00000026]">
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col h-20 items-center justify-center">
         <div className="text-gray-600 body-font flex justify-between items-center w-full">
           <div className="flex items-center gap-[20px]">
             <div className="menu cursor-pointer md:hidden p-[10px] mt-[10px] text-amber-500">
@@ -84,7 +96,33 @@ export default function NavLinks() {
             >
               <p className="font-semibold drop-shadow-xl">Get Started</p>
             </div>
-
+            <div className="flex flex-col relative gap-[10px] justify-center items-center">
+              <img
+                ref={imgRef}
+                src={img_avatar}
+                className="w-[50px] object-cover border-2 border-gray-400 rounded-full cursor-pointer"
+                alt="avatar"
+                onClick={() => setOpen(!open)}
+              />
+              {open && (
+                <div
+                  ref={menuRef}
+                  className="bg-white absolute top-[60px] p-4 w-[200px] shadow-lg"
+                >
+                  <ul>
+                    {Menu.map((menu) => (
+                      <li
+                        onClick={() => setOpen(false)}
+                        className="p-2 hover:bg-amber-200 text-lg rounded cursor-pointer"
+                        key={menu}
+                      >
+                        {menu}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
             <Link to={"/orders"} className="cart-icon">
               <div className="relative w-11 pt-3">
                 <TiShoppingCart size={"2rem"} className="text-amber-500" />

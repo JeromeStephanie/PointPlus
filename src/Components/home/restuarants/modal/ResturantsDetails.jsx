@@ -25,7 +25,7 @@ const ResturantsDetails = ({
     <div>
       {isOpen && (
         <div className="modal-overlay">
-          <div className="modal-content  h-[90vh] flex-col w-[90%] overflow-hidden overflow-y-auto drop-shadow-xl bg-white shadow-[0px_4px_10px_#00000026]">
+          <div className="modal-content h-[95vh] flex-col xl:w-[95%] lg:w-[95%] w-full overflow-hidden overflow-y-auto drop-shadow-xl bg-white shadow-[0px_4px_10px_#00000026]">
             <div className=" text-left flex flex-col">
               <div className="h-[200px]">
                 <img
@@ -58,9 +58,6 @@ const ResturantsDetails = ({
                     <p className="font-semibold">N200</p>
                   </div>
                 </div>
-                {/* <div className="w-[100%] text-black text-lg font-semibold font-['Open Sans'] mt-[20px] mb-[30px]">
-                  Categories
-                </div> */}
                 <div className="Scroll pb-[10px] flex overflow-x-auto gap-4 text-left overflow-y-hidden">
                   <div
                     className={`cursor-pointer duration-100 font-semibold active:bg-amber-200 px-10 py-[7px] rounded-[40px] shadow justify-start items-center ${
@@ -145,7 +142,7 @@ const ResturantsDetails = ({
                 </div>
               </div>
             </div>
-            <div className="products grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-3  gap-5 p-4 z-20">
+            <div className="products grid grid-cols-2 xl:grid-cols-5 md:grid-cols-3 lg:grid-cols-4 gap-[8px] p-4 z-20">
               {filterProducts().map((product) => (
                 <div className="boxes h-auto overflow-hidden rounded-[15px] mb-[10px] drop-shadow-xl bg-[#ffa5004c] shadow-[0px_4px_10px_#00000026]">
                   <img
@@ -183,7 +180,7 @@ const ResturantsDetails = ({
               ))}
             </div>
             <span
-              className="absolute p-[5px] drop-shadow-xl shadow-md rounded-[60px] top-2 right-2 cursor-pointer font-semibold text-red-600 border-black flex justify-center items-center bg-white px-2"
+              className="absolute p-[5px] drop-shadow-xl shadow-md rounded-[60px] top-5 right-8 cursor-pointer font-semibold text-red-600 border-black flex justify-center items-center bg-white px-2"
               onClick={onClose}
             >
               <IoClose size={"1.5rem"} />

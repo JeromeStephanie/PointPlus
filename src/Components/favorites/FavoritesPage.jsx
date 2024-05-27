@@ -4,8 +4,17 @@ import { BsFillHeartFill } from "react-icons/bs";
 import AddToCartButton from "../../Helper/AddToCartButton";
 import { IoSearch } from "react-icons/io5";
 import { Typewriter } from "react-simple-typewriter";
+import { useNavigate } from "react-router-dom";
+import { FaArrowLeftLong } from "react-icons/fa6";
+import { RiHeartAddFill } from "react-icons/ri";
 
 const FavoritesPage = ({ favoriteProducts, products, onRemoveFavorite }) => {
+   const navigate = useNavigate();
+
+   const handleStartShopping = () => {
+     navigate("/");
+   };
+
   const favoriteItems = products.filter((product) =>
     favoriteProducts.includes(product.id)
   );
@@ -14,7 +23,7 @@ const FavoritesPage = ({ favoriteProducts, products, onRemoveFavorite }) => {
     <div>
       <div className="search h-[480px]">
         <NavLinks />
-        <div className="content2 top-[30%] flex flex-col justify-center items-center w-[90%] left-[100%] -translate-x-[-6%] -translate-y-[-30%] gap-[20px]">
+        <div className="content2 [font-family:var(--b-2-font-family)] top-[30%] flex flex-col justify-center items-center w-[90%] left-[100%] -translate-x-[-6%] -translate-y-[-30%] gap-[20px]">
           <div className="p-[10px] font-sans h-[150px] mb-[5px] font-semibold text-[30px] w-[100%] flex justify-start items-center text-white">
             <div className="py-[30px] lg:ml-[250px] pl-[30px] ">
               <Typewriter
@@ -54,10 +63,15 @@ const FavoritesPage = ({ favoriteProducts, products, onRemoveFavorite }) => {
           </div>
         </div>
       </div>
-      <div className="lg:p-[50px] xl:p-[50px] py-[50px] p-[10px] w-full bg-gray-200">
-        <p className="text-[25px] mt-[50px] font-semibold mb-[20px]">
-          All Favorite Products
-        </p>
+      <div className="lg:p-[50px] xl:p-[50px] py-[50px] p-[20px] w-full">
+        <div className="flex items-center mb-[20px] gap-[10px]">
+          <div className="flex justify-center items-center">
+            <RiHeartAddFill size={"1.5rem"} className="text-amber-500" />
+          </div>
+          <p className="text-[25px] [font-family:var(--h-3-font-family)] font-semibold">
+            All Favorites
+          </p>
+        </div>
         {favoriteItems.length > 0 ? (
           <div className="grid grid-cols-1 xl:grid-cols-4 lg:grid-cols-3 xl:gap-5 p-4 lg:gap-5 gap-[5px]">
             {favoriteItems.map((product) => (
@@ -102,8 +116,15 @@ const FavoritesPage = ({ favoriteProducts, products, onRemoveFavorite }) => {
             ))}
           </div>
         ) : (
-          <div className="text-center text-black font-semibold">
-            No favorite products added yet.
+          <div className="flex flex-col justify-center items-center text-black font-semibold">
+            <p>No favorite added yet.</p>
+            <div
+              onClick={handleStartShopping}
+              className="cursor-pointer p-[10px] w-[30%] gap-3 mt-[20px] bg-amber-500 text-white flex justify-center items-center drop-shadow-xl shadow-[0px_4px_10px_#00000026]"
+            >
+              <FaArrowLeftLong />
+              <p className="font-semibold">Continue Shopping</p>
+            </div>
           </div>
         )}
       </div>

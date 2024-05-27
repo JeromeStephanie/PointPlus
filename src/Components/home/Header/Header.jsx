@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { IoSearch } from "react-icons/io5";
 import Resturants from '../restuarants/Resturants'
-import Products from '../Products'
 import AddToCartButton from "../../../Helper/AddToCartButton"
 import Icons from "../Header/Icons"
 import ResturantsDetails from "../restuarants/modal/ResturantsDetails"
@@ -167,7 +166,7 @@ const Header = ({
           </motion.div>
         </motion.div>
       </div>
-      <div className="p-[50px] w-full bg-gray-200">
+      <div className="xl:p-[50px] lg:p-[50px] p-[20px] w-full bg-gray-200">
         <p className="text-[25px] font-semibold mb-[20px]">Special Offers</p>
         <motion.div
           ref={carousel}
@@ -222,7 +221,7 @@ const Header = ({
         products={products}
         onRemoveFavorite={handleRemoveFavorite}
       />
-      <div className="px-[50px] Resturants">
+      <div className="xl:px-[50px] lg:p-[50px] p-[20px] Resturants">
         <div className="flex items-center text-left mt-[50px] gap-1 mb-[20px] ">
           <GiShop size={"1.5rem"} className="text-amber-500" />
           <p className="text-[25px] font-semibold">Resturants you might like</p>
