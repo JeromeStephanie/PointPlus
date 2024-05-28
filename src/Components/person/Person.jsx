@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaChevronLeft } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
 import ImageUploadModal from "../person/image-upload/ImageUploadModal";
@@ -7,10 +7,11 @@ import { img_avatar } from "../../Assets";
 import PersonalDetailsModal from "./personal-details/PersonalDetailsModal";
 import ContactDetailsModal from "./contact-details/ContactDetailsModal";
 import PassDetailsModal from "./password-details/PassDetailsModal";
+import AvatarContext from "../../Api/contexts/AvatarContext";
 
 const Person = () => {
   const navigate = useNavigate();
-  const [avatar, setAvatar] = useState(null);
+  const { avatar, setAvatar } = useContext(AvatarContext);
   const [isUploadModalOpen, setUploadModalOpen] = useState(false);
   const [isPersonalDetailsModalOpen, setIsPersonalDetailsModalOpen] = useState(false);
   const [isContactDetailsModalOpen, setIsContactDetailsModalOpen] = useState(false);
@@ -79,12 +80,12 @@ const Person = () => {
       <div className="flex flex-col lg:px-[50px] justify-center items-center p-[30px] pt-4 border-b-4 border-b-gray-300">
         <div
           onClick={handleImageClick}
-          className=" w-[20%] flex flex-shrink-0 justify-center items-center"
+          className=" w-[200px] flex rounded-full border-4 border-gray-300 h-[200px] justify-center mb-4 items-center"
           style={{ cursor: "pointer" }}
         >
           <img
             src={avatar || img_avatar}
-            className="w-[100%] h-[100%] border mb-4 drop-shadow-xl shadow-[0px_4px_10px_#00000026] border-hidden rounded-[90px]"
+            className="w-full h-full rounded-full border drop-shadow-xl shadow-[0px_4px_10px_#00000026] border-hidden"
             alt="avatar"
           />
         </div>

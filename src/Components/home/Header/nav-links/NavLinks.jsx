@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { TiShoppingCart } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import { IoMenuOutline } from "react-icons/io5";
@@ -9,6 +9,7 @@ import { MenuItems } from "../drop-down/menu-items/MenuItems";
 import LoginModal from "../../login/LoginModal";
 import Dashboard from "../../dashboard/Dashboard";
 import { img_avatar } from "../../../../Assets";
+import AvatarContext from "../../../../Api/contexts/AvatarContext";
 
 export default function NavLinks() {
   const [click, setClick] = useState(false);
@@ -20,6 +21,7 @@ export default function NavLinks() {
   const [open, setOpen] = useState(false);
   const menuRef = useRef();
   const imgRef = useRef();
+  const { avatar } = useContext(AvatarContext);
 
   window.addEventListener('click', (e) => {
     console.log(e.target === menuRef.current);
@@ -95,13 +97,15 @@ export default function NavLinks() {
               <p className="font-semibold drop-shadow-xl">Get Started</p>
             </div>
             <div className="flex flex-col relative gap-[10px] justify-center items-center">
-              <img
-                ref={imgRef}
-                src={img_avatar}
-                className="w-[50px] object-cover border-2 border-gray-400 rounded-full cursor-pointer"
-                alt="avatar"
-                onClick={() => setOpen(!open)}
-              />
+              <div className="w-[52px] border-2 border-gray-400 cursor-pointer h-[52px] rounded-full flex justify-center items-center">
+                <img
+                  ref={imgRef}
+                  src={avatar}
+                  className="w-full h-full object-cover rounded-full"
+                  alt="avatar"
+                  onClick={() => setOpen(!open)}
+                />
+              </div>
               {open && (
                 <div
                   ref={menuRef}
