@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { TiShoppingCart } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import { IoMenuOutline } from "react-icons/io5";
@@ -8,6 +8,7 @@ import { RiArrowDownSFill } from "react-icons/ri";
 import Dropdown from "../Components/home/Header/drop-down/Dropdown";
 import { MenuItems } from "../Components/home/Header/drop-down/menu-items/MenuItems";
 import Dashboard from "../Components/home/dashboard/Dashboard";
+import AvatarContext from "../Api/contexts/AvatarContext";
 
 const Headers = () => {
   const [click, setClick] = useState(false);
@@ -15,6 +16,19 @@ const Headers = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState("Customer");
   const [isDashboardModalOpen, setIsDashboardModalOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const menuRef = useRef();
+  const imgRef = useRef();
+  const { avatar } = useContext(AvatarContext);
+
+  window.addEventListener('click', (e) => {
+    console.log(e.target === menuRef.current);
+    if (e.target !== menuRef.current && e.target !== imgRef.current) {
+      setOpen(false);
+    };
+  });
+
+  const Menu = ["Profile", "Logout"];
 
   const handleToggleModal = () => {
     setIsDashboardModalOpen(!isDashboardModalOpen);
@@ -64,7 +78,35 @@ const Headers = () => {
                 />
               )}
             </div>
-
+            <div className="flex flex-col relative gap-[10px] justify-center items-center">
+              <div className="w-[52px] border-2 border-gray-400 cursor-pointer h-[52px] rounded-full flex justify-center items-center">
+                <img
+                  ref={imgRef}
+                  src={avatar}
+                  className="w-full h-full object-cover rounded-full"
+                  alt="avatar"
+                  onClick={() => setOpen(!open)}
+                />
+              </div>
+              {open && (
+                <div
+                  ref={menuRef}
+                  className="bg-white absolute top-[60px] p-4 w-[200px] shadow-lg"
+                >
+                  <ul>
+                    {Menu.map((menu) => (
+                      <li
+                        onClick={() => setOpen(false)}
+                        className="p-2 hover:bg-amber-200 text-lg rounded cursor-pointer"
+                        key={menu}
+                      >
+                        {menu}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
             <Link to={"/orders"} className="cart-icon">
               <div className="relative w-11 pt-3">
                 <TiShoppingCart size={"2rem"} className="text-black" />
@@ -73,55 +115,6 @@ const Headers = () => {
                 </span>
               </div>
             </Link>
-            <div className={click ? "nav-menu active" : "nav-menu"}>
-              <ul>
-                <li className="nav-item">
-                  <Link
-                    to={"/"}
-                    className="nav-links"
-                    onClick={closeMobileMenu}
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    to={"/"}
-                    className="nav-links"
-                    onClick={closeMobileMenu}
-                  >
-                    Category
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    to={"/favs"}
-                    className="nav-links"
-                    onClick={closeMobileMenu}
-                  >
-                    Order History
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    to={"/orders"}
-                    className="nav-links"
-                    onClick={closeMobileMenu}
-                  >
-                    Cart
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    to={"/person"}
-                    className="nav-links"
-                    onClick={closeMobileMenu}
-                  >
-                    Reviews
-                  </Link>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
       </div>

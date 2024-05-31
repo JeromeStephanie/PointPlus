@@ -6,17 +6,14 @@ import Point from "../../../../Helper/Point";
 import { RiArrowDownSFill } from "react-icons/ri";
 import Dropdown from "../drop-down/Dropdown";
 import { MenuItems } from "../drop-down/menu-items/MenuItems";
-import LoginModal from "../../login/LoginModal";
 import Dashboard from "../../dashboard/Dashboard";
-import { img_avatar } from "../../../../Assets";
 import AvatarContext from "../../../../Api/contexts/AvatarContext";
 
-export default function NavLinks() {
+export default function NavLinks({ handleOpenModal }) {
   const [click, setClick] = useState(false);
   // const [dropdown, setDropdown] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState("Customer");
-  const [loginModalOpen, setLoginModalOpen] = useState("");
   const [isDashboardModalOpen, setIsDashboardModalOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const menuRef = useRef();
@@ -30,7 +27,16 @@ export default function NavLinks() {
     };
   });
 
-  const Menu = ["Profile", "Logout"];
+  const Menu = [
+    {
+      path: "/person",
+      name: "Profile",
+    },
+    {
+      path: "/",
+      name: "LogOut",
+    },
+  ];
 
   const handleToggleModal = () => {
     setIsDashboardModalOpen(true); // Always open the Dashboard
@@ -38,14 +44,6 @@ export default function NavLinks() {
 
   const handleToggleModalClose = () => {
     setIsDashboardModalOpen(false); // Close the Dashboard
-  };
-
-  const handleLoginModalClose = () => {
-    setLoginModalOpen(false);
-  };
-
-  const handleLogin = () => {
-    setLoginModalOpen(true);
   };
 
   const toggleDropdown = () => {
@@ -76,6 +74,12 @@ export default function NavLinks() {
           </div>
           <div className="flex gap-4 p-4 items-center">
             <div
+              onClick={handleOpenModal}
+              className="bg-amber-500 login p-[10px] px-[30px] rounded-[30px] text-white drop-shadow-xl shadow-[0px_4px_10px_#00000026] transform transition-transform duration-300 hover:scale-105 cursor-pointer"
+            >
+              <p className="font-semibold drop-shadow-xl">Get Started</p>
+            </div>
+            <div
               className="flex services cursor-pointer p-[10px] rounded-[30px] px-[20px] border-2 border-amber-500  text-white items-center"
               onClick={toggleDropdown}
             >
@@ -90,13 +94,7 @@ export default function NavLinks() {
                 />
               )}
             </div>
-            <div
-              onClick={handleLogin}
-              className="bg-amber-500 login p-[10px] px-[30px] rounded-[30px] text-white drop-shadow-xl shadow-[0px_4px_10px_#00000026] transform transition-transform duration-300 hover:scale-105 cursor-pointer"
-            >
-              <p className="font-semibold drop-shadow-xl">Get Started</p>
-            </div>
-            <div className="flex flex-col relative gap-[10px] justify-center items-center">
+            <div className=" flex flex-col relative gap-[10px] justify-center items-center">
               <div className="w-[52px] border-2 border-gray-400 cursor-pointer h-[52px] rounded-full flex justify-center items-center">
                 <img
                   ref={imgRef}
@@ -136,7 +134,7 @@ export default function NavLinks() {
           </div>
         </div>
       </div>
-      <LoginModal isOpen={loginModalOpen} onClose={handleLoginModalClose} />
+
       <Dashboard
         isOpen={isDashboardModalOpen}
         onClose={handleToggleModalClose}

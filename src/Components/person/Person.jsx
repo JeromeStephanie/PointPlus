@@ -85,7 +85,7 @@ const Person = () => {
         >
           <img
             src={avatar || img_avatar}
-            className="w-full h-full rounded-full border drop-shadow-xl shadow-[0px_4px_10px_#00000026] border-hidden"
+            className="w-full h-full rounded-full object-cover border drop-shadow-xl shadow-[0px_4px_10px_#00000026] border-hidden"
             alt="avatar"
           />
         </div>
@@ -103,40 +103,34 @@ const Person = () => {
       />
       <form className="border-b-2 mb-7 border-b-black">
         <div className="my-5">
-          <div className="flex items-center justify-between w-[70%] text-left lg:px-[50px] ml-[30px] mb-7 font-semibold text-lg">
-            <p className="">Personal Details</p>
+          <div className="flex items-center justify-between text-left lg:px-[50px] ml-[30px] mb-7 font-semibold text-lg">
+            <p className="w-[50%]">Personal Details</p>
             <p
               onClick={handlePersonalDetailsModal}
-              className="text-amber-500 font-bold cursor-pointer"
+              className="text-amber-500 pr-[20px] xl:w-[50%] lg:w-[50%] px-[10px] font-bold cursor-pointer"
             >
               Edit
             </p>
           </div>
           <div className="flex lg:px-[50px] w-full flex-col gap-[10px] text-left border-b-4 border-b-gray-300">
-            <div className="flex w-full justify-between">
-              <p className="font-semibold ml-[30px] w-[50%]">Name</p>
-              <input
-                type="text"
-                className="text-left focus:border-b-2 px-[10px] focus:border-b-gray-300 outline-0 w-[50%]"
-              />
+            <div className="font-semibold flex w-full justify-between">
+              <p className="ml-[30px] w-[50%]">Name</p>
+              <span className="pr-[20px] xl:w-[50%] lg:w-[50%] px-[10px]">User</span>
             </div>
-            <div className="flex w-full items-center justify-between">
-              <p className="font-semibold ml-[30px] w-[50%]">Email Address</p>
-              <input
-                type="text"
-                className="text-left focus:border-b-2 px-[10px] focus:border-b-gray-300 outline-0 w-[50%]"
-              />
+            <div className="font-semibold flex w-full items-center justify-between">
+              <p className="ml-[30px] w-[50%]">Email Address</p>
+              <span className="pr-[20px] xl:w-[50%] lg:w-[50%] px-[10px]">User@gmail.com</span>
             </div>
-            <div className="flex mb-7 items-center w-full justify-between">
-              <p className="font-semibold ml-[30px] w-[50%]">Member Since</p>
-              <span className="w-[50%] px-[10px]">2nd, May, 2020</span>
+            <div className="font-semibold flex mb-7 items-center w-full justify-between">
+              <p className="ml-[30px] w-[50%]">Member Since</p>
+              <span className="pr-[20px] xl:w-[50%] lg:w-[50%] px-[10px]">2nd, May, 2020</span>
             </div>
           </div>
           <div className="text-left lg:px-[50px] border-b-4 border-b-gray-300">
-            <div className="flex items-center my-7 justify-between text-lg font-semibold ml-[30px] w-[68%]">
-              <p className="">Other Details</p>
+            <div className="flex items-center my-7 justify-between text-lg font-semibold ml-[30px]">
+              <p className="w-[50%]">Other Details</p>
               <p
-                className="text-amber-500 font-bold cursor-pointer"
+                className="text-amber-500 pr-[20px] xl:w-[50%] lg:w-[50%] px-[10px] font-bold cursor-pointer"
                 onClick={handlePassDetailsModal}
               >
                 Edit
@@ -146,26 +140,23 @@ const Person = () => {
               <p className="font-semibold ml-[30px] w-[50%]">Password</p>
               <input
                 type="password"
-                className="text-left focus:border-b-2 px-[10px] focus:border-b-gray-300 outline-0 w-[50%]"
+                className="xl:text-left lg:text-left text-right px-[10px] focus:outline-none focus:shadow-outline  pr-[20px] xl:w-[50%] lg:w-[50%]"
               />
             </div>
           </div>
-          <div className="flex items-center justify-between w-[70%] text-left lg:px-[50px] ml-[30px] my-7 font-semibold text-lg">
-            <p className="">Contact Details</p>
+          <div className="flex items-center justify-between text-left lg:px-[50px] ml-[30px] my-7 font-semibold text-lg">
+            <p className="w-[50%]">Contact Details</p>
             <p
-              className="text-amber-500 font-bold cursor-pointer"
+              className="text-amber-500 pr-[20px] xl:w-[50%] lg:w-[50%] px-[10px] font-bold cursor-pointer"
               onClick={handleContactDetailsModal}
             >
               Edit
             </p>
           </div>
           <div className="flex w-full flex-col gap-[10px] lg:px-[50px] text-left">
-            <div className="flex w-full items-center justify-between">
-              <p className="font-semibold ml-[30px] w-[50%]">Phone Number</p>
-              <input
-                type="text"
-                className="text-left focus:border-b-2 px-[10px] focus:border-b-gray-300 outline-0 w-[50%]"
-              />
+            <div className="font-semibold flex w-full items-center justify-between">
+              <p className="ml-[30px] w-[50%]">Phone Number</p>
+              <span className="pr-[20px] xl:w-[50%] lg:w-[50%] px-[10px]">070476782937</span>
             </div>
           </div>
         </div>
@@ -173,10 +164,10 @@ const Person = () => {
 
       <div>
         <div className="flex lg:px-[50px] justify-between mx-[30px]">
-          <p className="text-left font-semibold text-lg">Review Orders</p>
+          <p className="text-left w-[50%] font-semibold text-lg">Review Orders</p>
           <p
             onClick={handleViewAllClick}
-            className="text-left font-semibold text-lg cursor-pointer"
+            className="text-left font-semibold pr-[20px] xl:w-[50%] lg:w-[50%] text-lg cursor-pointer"
           >
             View All
           </p>

@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import Products from "../../Products";
+import React from "react";
 import { BsFillHeartFill } from "react-icons/bs";
 import { RiHeartAddFill } from "react-icons/ri";
 import AddToCartButton from "../../../../Helper/AddToCartButton";
 import { Link } from "react-router-dom";
-import { FaArrowRightLong } from "react-icons/fa6";
 
 const Favorites = ({ favoriteProducts, products, onRemoveFavorite }) => {
   const favoriteItems = products.filter((product) =>

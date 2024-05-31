@@ -261,7 +261,7 @@ body {
 .dropdown-menu {
   width: 200px;
   position: absolute;
-  right: 30px;
+  right: 150px;
   top: 80px;
   list-style: none;
   text-align: start;
@@ -360,19 +360,6 @@ body {
 
 /* LoginModal.css */
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100dvh;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
 
 .modal {
   animation: zoomIn 0.6s ease forwards;
