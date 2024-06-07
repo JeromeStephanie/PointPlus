@@ -4,18 +4,29 @@ import ContentSlide from "../about-us/content-slider/ContentSlide"
 import { FaArrowDownLong } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { burger, deliver, team } from "../../Assets";
+import { Typewriter } from "react-simple-typewriter";
 
 const AboutUs = () => {
   return (
-    <div className="w-full h-auto [font-family:var(--logo-text-font-family)]">
-      <AboutUSHeader />
-      <div className="aboutUs h-[500px] flex justify-center items-center  mb-[70px]">
-        <div className="content flex justify-center items-center">
-          <p className="text-amber-500 font-semibold text-[40px] text-center font-logo-text [font-family:var(--logo-text-font-family)]">
-            Our mission is to make food delivery easy, efficient, and enjoyable
-            for everyone
-          </p>
-        </div>
+    <div className="w-full">
+      <div className="aboutUs h-[480px] mb-[70px] [font-family:var(--logo-text-font-family)]">
+        <AboutUSHeader />
+        {/* <div className="h-[500px] flex justify-center items-center">
+          <div className="content flex justify-center items-center">
+            <p className="text-amber-500 font-semibold text-[40px] text-center font-logo-text [font-family:var(--logo-text-font-family)]">
+              Our mission is to make food delivery easy, efficient, and enjoyable
+              for everyone
+            </p>
+          </div>
+        </div> */}
+        <div className="content2 top-[30%] border flex flex-col justify-center items-center w-[90%] left-[100%] -translate-x-[-6%] -translate-y-[-60%] gap-[20px]">
+          <div className="content flex justify-center items-center">
+            <p className="text-amber-500 font-semibold text-[40px] text-center font-logo-text [font-family:var(--logo-text-font-family)]">
+              Our mission is to make food delivery easy, efficient, and enjoyable
+              for everyone
+            </p>
+          </div>
+          </div>
       </div>
       <ContentSlide />
       <div className="flex flex-col mt-[70px] justify-center items-center">
@@ -86,6 +97,7 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
+
     </div>
   );
 };

@@ -8,6 +8,7 @@ import PersonalDetailsModal from "./personal-details/PersonalDetailsModal";
 import ContactDetailsModal from "./contact-details/ContactDetailsModal";
 import PassDetailsModal from "./password-details/PassDetailsModal";
 import AvatarContext from "../../Api/contexts/AvatarContext";
+import Dashboard from "../../Components/home/dashboard/Dashboard";
 
 const Person = () => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const Person = () => {
   const [isPersonalDetailsModalOpen, setIsPersonalDetailsModalOpen] = useState(false);
   const [isContactDetailsModalOpen, setIsContactDetailsModalOpen] = useState(false);
   const [isPassDetailsModalOpen, setIsPassDetailsModalOpen] = useState(false);
+  const [isDashboardModalOpen, setIsDashboardModalOpen] = useState(false);
 
   const handlePersonalDetailsModal = () => {
     setIsPersonalDetailsModalOpen(true); // Always open the Dashboard
@@ -57,9 +59,17 @@ const Person = () => {
     reader.readAsDataURL(file);
   };
 
+  const handleToggleModal = () => {
+    setIsDashboardModalOpen(true); // Always open the Dashboard
+  };
+
+  const handleToggleModalClose2 = () => {
+    setIsDashboardModalOpen(false); // Close the Dashboard
+  };
+
   return (
     <div className=" flex flex-col">
-      <Headers />
+      <Headers handleToggleModal={handleToggleModal} />
       <PersonalDetailsModal
         isOpen={isPersonalDetailsModalOpen}
         onClose={handlePersonalDetailsModalClose}
@@ -89,9 +99,9 @@ const Person = () => {
             alt="avatar"
           />
         </div>
-        <p className="font-[number:var(--h-3-font-weight)] text-[40px] text-black tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
-          Welcome,{" "}
-          <span className="font-[number:var(--h-3-font-weight)] text-[40px] text-left text-black tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
+        <p className="font-[number:var(--h-3-font-weight)] lg:text-4xl text-3xl text-black tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
+          Welcome,
+          <span className="font-[number:var(--h-3-font-weight)] lg:text-4xl text-3xl text-left text-black tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
             User.
           </span>
         </p>
@@ -173,6 +183,11 @@ const Person = () => {
           </p>
         </div>
       </div>
+      <Dashboard
+        isOpen={isDashboardModalOpen}
+        onClose={handleToggleModalClose2}
+        handleToggleModal={handleToggleModal}
+      />
     </div>
   );
 };

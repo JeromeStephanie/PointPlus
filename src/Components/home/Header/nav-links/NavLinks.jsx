@@ -8,13 +8,13 @@ import Dropdown from "../drop-down/Dropdown";
 import { MenuItems } from "../drop-down/menu-items/MenuItems";
 import Dashboard from "../../dashboard/Dashboard";
 import AvatarContext from "../../../../Api/contexts/AvatarContext";
+import { RxHamburgerMenu } from "react-icons/rx";
 
-export default function NavLinks({ handleOpenModal }) {
+export default function NavLinks({ handleOpenModal, handleToggleModal }) {
   const [click, setClick] = useState(false);
   // const [dropdown, setDropdown] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState("Customer");
-  const [isDashboardModalOpen, setIsDashboardModalOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const menuRef = useRef();
   const imgRef = useRef();
@@ -26,25 +26,6 @@ export default function NavLinks({ handleOpenModal }) {
       setOpen(false);
     };
   });
-
-  const Menu = [
-    {
-      path: "/person",
-      name: "Profile",
-    },
-    {
-      path: "/",
-      name: "LogOut",
-    },
-  ];
-
-  const handleToggleModal = () => {
-    setIsDashboardModalOpen(true); // Always open the Dashboard
-  };
-
-  const handleToggleModalClose = () => {
-    setIsDashboardModalOpen(false); // Close the Dashboard
-  };
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -62,9 +43,9 @@ export default function NavLinks({ handleOpenModal }) {
     <div className="w-full NavLink pb-[20px] px-[50px] h-20 border-b-[1px] border-b-white left-0 sticky top-0 z-50 bg-transparent drop-shadow-xl shadow-[0px_4px_10px_#00000026]">
       <div className="flex flex-col h-20 items-center justify-center">
         <div className="text-gray-600 body-font flex justify-between items-center w-full">
-          <div className="flex items-center gap-[20px]">
-            <div className="menu cursor-pointer md:hidden p-[10px] mt-[10px] text-amber-500">
-              <IoMenuOutline size={"3rem"} onClick={handleToggleModal} />
+          <div className="flex items-center gap-[15px]">
+            <div onClick={handleToggleModal} className="menu bg-amber-500 ml-[10px] hover:bg-[#ecb858ec] duration-300 rounded-full cursor-pointer md:hidden p-[7px] mt-[10px] text-white">
+              <RxHamburgerMenu size={"1.2rem"} />
             </div>
             <div className="w-[50%]cursor-pointer flex justify-center items-center">
               <Link to={"/"}>
@@ -80,7 +61,7 @@ export default function NavLinks({ handleOpenModal }) {
               <p className="font-semibold drop-shadow-xl">Get Started</p>
             </div>
             <div
-              className="flex services cursor-pointer p-[10px] rounded-[30px] px-[20px] border-2 border-amber-500  text-white items-center"
+              className="flex services cursor-pointer hover:bg-amber-500 hover:text-white p-[10px] rounded-[30px] px-[20px] border-2 border-amber-500  text-white items-center"
               onClick={toggleDropdown}
             >
               <p className="font-semibold">{selectedItem}</p>
@@ -107,18 +88,27 @@ export default function NavLinks({ handleOpenModal }) {
               {open && (
                 <div
                   ref={menuRef}
-                  className="bg-white absolute top-[60px] p-4 w-[200px] shadow-lg"
+                  className="bg-white rounded-lg absolute top-[60px] p-[10px] w-[100px] shadow-lg"
                 >
                   <ul>
-                    {Menu.map((menu) => (
-                      <li
-                        onClick={() => setOpen(false)}
-                        className="p-2 hover:bg-amber-200 text-lg rounded cursor-pointer"
-                        key={menu}
-                      >
-                        {menu}
-                      </li>
-                    ))}
+                    <li
+                      onClick={() => setOpen(false)}
+                      className="p-1 px-2 hover:bg-amber-500 font-[590] text-black hover:text-white rounded cursor-pointer"
+
+                    >
+                      <Link to={"/person"}>
+                        Profile
+                      </Link>
+                    </li>
+                    <li
+                      onClick={() => setOpen(false)}
+                      className="p-1 px-2 hover:bg-amber-500 text-black hover:text-white font-[590] rounded cursor-pointer"
+
+                    >
+                      <Link to={"/"}>
+                        Logout
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               )}
@@ -134,11 +124,6 @@ export default function NavLinks({ handleOpenModal }) {
           </div>
         </div>
       </div>
-
-      <Dashboard
-        isOpen={isDashboardModalOpen}
-        onClose={handleToggleModalClose}
-      />
     </div>
   );
 }

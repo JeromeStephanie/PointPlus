@@ -172,22 +172,19 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  max-height: calc(100vh);
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   z-index: 1000;
-
-}
-
-.dashboard-modal.open {
-  right: 0;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .modalContent {
   background-color: rgb(248, 221, 174);
   width: 230px;
   height: 100vh;
-  left: 0;
+  position: relative;
 }
 
 @keyframes zoomIn {
@@ -267,6 +264,7 @@ body {
   text-align: start;
   display: flex;
   flex-direction: column;
+  border-radius: 100%;
   gap: 10px;
   font-weight: 600;
   justify-content: center;
@@ -276,11 +274,11 @@ body {
 .dropdown-menu li {
   background: transparent;
   cursor: pointer;
+  height: 55px;
   padding-left: 20px;
   padding-right: 20px;
   border: 2px solid #FFA500;
   border-radius: 40px;
-
 }
 
 .dropdown-menu li:hover {
@@ -463,12 +461,25 @@ body {
 }
 
 .content {
+  /* margin-top: 30px; */
   width: 80%;
   font-family: Roboto Condensed;
 }
 
 .content2 {
   font-family: Roboto Condensed;
+}
+
+.faq-content {
+  overflow: hidden;
+  max-height: 0;
+  transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+}
+
+.faq-content.show {
+  height: auto;
+  max-height: 9999px;
+  transition: all 0.5s cubic-bezier(1, 0, 1, 0);
 }
 
 .custom-checkbox {
@@ -515,7 +526,7 @@ body {
     display: block;
   }
 
-  .login, .services, .cart-icon {
+  .login, .services, .cart-icon, .about-navlinks {
     display: none;
   }
 
@@ -595,10 +606,6 @@ body {
 
   .checkout-icon {
     width: 70%;
-  }
-
-  .rest-text {
-    font-size: 18px;
   }
 
   .products,
@@ -699,5 +706,9 @@ body {
   .transfer,
   .cash {
     width: 100%;
+  }
+
+  .resturants {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 }

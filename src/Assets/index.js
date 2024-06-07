@@ -40,10 +40,12 @@ import fried_rice from './fried_rice.png'
 import soup from './soup.png'
 import chicken from './chicken.png'
 import phone from './phone.png'
+import no_product from './no-product.png'
 
 export {
   google,
   success,
+  no_product,
   phone,
   chicken,
   burger,

@@ -68,7 +68,7 @@ const FavoritesPage = ({ favoriteProducts, products, onRemoveFavorite }) => {
           <div className="flex justify-center items-center">
             <RiHeartAddFill size={"1.5rem"} className="text-amber-500" />
           </div>
-          <p className="text-[25px] [font-family:var(--h-3-font-family)] font-semibold">
+          <p className="text-[20px] md:text-[25px] [font-family:var(--h-3-font-family)] font-semibold">
             All Favorites
           </p>
         </div>
@@ -84,11 +84,11 @@ const FavoritesPage = ({ favoriteProducts, products, onRemoveFavorite }) => {
                   alt={product.title}
                   className="w-full rounded-[15px] h-[60%] object-cover transform transition-transform duration-300 hover:scale-105"
                 />
-                <div className="flex flex-shrink py-[10px] justify-between">
-                  <div className="font-[number:var(--h-3-font-weight)] pl-[15px] text-black text-[length:var(--h-3-font-size)] tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
+                <div className="flex flex-shrink py-[5px] justify-between">
+                  <div className="font-[number:var(--h-3-font-weight)] pl-[5px] text-black text-[length:var(--h-3-font-size)] tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
                     {product.title}
                   </div>
-                  <div className="font-[number:var(--h-3-font-weight)] pr-[15px] text-black text-[length:var(--h-3-font-size)] tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
+                  <div className="font-[number:var(--h-3-font-weight)] pr-[5px] text-black text-[length:var(--h-3-font-size)] tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
                     {product.price !== undefined
                       ? `N${product.price.toLocaleString()}`
                       : "Free!"}

@@ -15,30 +15,34 @@ const LoginModal = ({ isOpen, onClose }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{}}
-              className="bg-white rounded-[10px] fixed left-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] w-96 h-auto z-[100]">
+              className="bg-white rounded-[10px] fixed left-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] lg:w-[35%] w-[100%] md:w-[50%] h-auto z-[100]">
               <div className="flex rounded-[10px] flex-col gap-[20px] border p-[30px]">
                 <div className="flex gap-[20px] justify-center items-center flex-col">
-                  <h1 className="text-black text-2xl lg:font-bold font-semibold tracking-[2px]">Welcome</h1>
+                  <h1 className="text-black lg:text-4xl text-2xl lg:font-bold font-semibold tracking-[2px]">Welcome</h1>
                   <p className="font-medium text-gray-500">Let's start off with your phone number.</p>
                 </div>
                 <PhoneNumberInput />
-                <button className="bg-amber-500 mt-[20px] py-1 rounded-[20px] text-white font-semibold">Continue with SMS</button>
+                <button className="bg-amber-500 mt-[20px] py-[6px] rounded-[20px] text-white font-semibold">Continue with SMS</button>
                 <div className="flex w-full gap-2 justify-center items-center">
-                  <hr className="w-[50%]"/>
+                  <hr className="w-[50%]" />
                   <p>or</p>
-                  <hr className="w-[50%]"/>
+                  <hr className="w-[50%]" />
                 </div>
-                <button className="border flex px-[15px] items-center py-2 gap-[90px] rounded-[20px] border-gray-300">
-                  <div className="w-[20px] h-[20px]">
-                    <img src={google} className="w-full object-cover" alt="google" />
+                <button className="border px-[15px] py-2 rounded-[20px] border-gray-300">
+                  <div className="flex justify-between w-[60%]">
+                    <div className="w-[20px] h-[20px]">
+                      <img src={google} className="w-full object-cover" alt="google" />
+                    </div>
+                    <p className="font-semibold">Google</p>
                   </div>
-                  <p className="font-semibold">Google</p>
                 </button>
-                <button className="border flex px-[15px] items-center py-2 gap-[90px] rounded-[20px] border-gray-300">
-                  <div className="text-amber-500 flex justify-center items-center">
-                    <MdOutlineMailOutline size={"1.5rem"}/>
+                <button className="border px-[15px] py-2 rounded-[20px] border-gray-300">
+                  <div className="flex justify-between w-[60%]">
+                    <div className="text-amber-500 flex justify-center items-center">
+                      <MdOutlineMailOutline size={"1.5rem"} />
+                    </div>
+                    <p className="font-semibold">Email</p>
                   </div>
-                  <p className="font-semibold">Email</p>
                 </button>
                 <span
                   onClick={onClose}

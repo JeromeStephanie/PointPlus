@@ -82,10 +82,10 @@ const Sidebar = ({ children }) => {
               </NavLink>
           ))}
           <div
-            className="mt-[130px] ml-[20px] flex justify-center items-center border"
+            className="mt-[130px] ml-[20px] flex justify-center items-center"
             style={{ display: isOpen ? "block" : "none" }}
           >
-            <button className="drop-shadow-xl bg-[#ffa500] py-[8px] px-[50px] shadow-[0px_4px_10px_#00000026] font-semibold">
+            <button className="drop-shadow-xl bg-[#ffa500] py-[8px] px-[50px] shadow-[0px_4px_10px_#00000026] font-[590]">
               Logout
             </button>
           </div>

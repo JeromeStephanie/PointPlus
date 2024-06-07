@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaChevronLeft } from "react-icons/fa";
 import CartItems from "../order/cart-items/CartItems";
 import { Link, useNavigate } from "react-router-dom";
 import SimilarProduct from "../order/similar-product/SimilarProduct";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import Headers from "../../Helper/Headers";
+import Dashboard from "../home/dashboard/Dashboard";
 
 const Order = () => {
   const navigate = useNavigate();
+  const [isDashboardModalOpen, setIsDashboardModalOpen] = useState(false);
 
   const handleHome = () => {
     navigate("/");
@@ -17,9 +19,17 @@ const Order = () => {
     navigate("/checkout");
   };
 
+  const handleToggleModal = () => {
+    setIsDashboardModalOpen(true); // Always open the Dashboard
+  };
+
+  const handleToggleModalClose2 = () => {
+    setIsDashboardModalOpen(false); // Close the Dashboard
+  };
+
   return (
     <div className="order">
-      <Headers />
+      <Headers handleToggleModal={handleToggleModal} />
       <div className="p-[30px]">
         <div className="w-[100%] flex gap-[40%] mt-[-10px] mb-5 pl-0">
           <div>
@@ -80,11 +90,17 @@ const Order = () => {
         </div>
 
         <div>
-          <p className="mb-[30px] font-[number:var(--h-3-font-weight)] text-left text-black text-[length:var(--h-3-font-size)] tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
+          <p className="mb-[30px] font-[number:var(--h-3-font-weight)] text-[20px] md:text-[25px] text-left text-black tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
             Similar Foods
           </p>
           <SimilarProduct />
         </div>
+
+        <Dashboard
+          isOpen={isDashboardModalOpen}
+          onClose={handleToggleModalClose2}
+          handleToggleModal={handleToggleModal}
+        />
       </div>
     </div>
   );

@@ -7,11 +7,13 @@ import Headers from "../../Helper/Headers";
 import CardDetails from "../checkout/modals/CardDetails"
 import VisaDetails from "../checkout/modals/VisaDetails"
 import { masterCard, opay, visa } from "../../Assets";
+import Dashboard from "../home/dashboard/Dashboard";
 
 const CheckOut = () => {
   const [selectedMethod, setSelectedMethod] = useState(null);
   const [isCardModalOpen, setIsCardModalOpen] = useState(false);
   const [isVisaModalOpen, setIsVisaModalOpen] = useState(false);
+  const [isDashboardModalOpen, setIsDashboardModalOpen] = useState(false);
 
   const handlePaymentMethodClick = (method) => {
     setSelectedMethod(method);
@@ -29,9 +31,17 @@ const CheckOut = () => {
     }
   };
 
+  const handleToggleModal = () => {
+    setIsDashboardModalOpen(true); // Always open the Dashboard
+  };
+
+  const handleToggleModalClose2 = () => {
+    setIsDashboardModalOpen(false); // Close the Dashboard
+  };
+
   return (
     <div className="w-full min-h-screen">
-      <Headers />
+      <Headers handleToggleModal={handleToggleModal} />
       <div className=" p-[30px]">
         <div className="w-[50%] lg:px-[30px] checkout-icon flex justify-between mt-[-10px] mb-5">
           <div className="flex justify-center items-center">
@@ -200,6 +210,11 @@ const CheckOut = () => {
             </div>
           </div>
         </form>
+        <Dashboard
+          isOpen={isDashboardModalOpen}
+          onClose={handleToggleModalClose2}
+          handleToggleModal={handleToggleModal}
+        />
       </div>
     </div>
   );

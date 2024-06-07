@@ -1,16 +1,15 @@
 import React, { useContext, useRef, useState } from "react";
 import { TiShoppingCart } from "react-icons/ti";
 import { Link } from "react-router-dom";
-import { IoMenuOutline } from "react-icons/io5";
 import Point from "../Helper/Point";
-import { FaTimes } from "react-icons/fa";
 import { RiArrowDownSFill } from "react-icons/ri";
 import Dropdown from "../Components/home/Header/drop-down/Dropdown";
 import { MenuItems } from "../Components/home/Header/drop-down/menu-items/MenuItems";
 import Dashboard from "../Components/home/dashboard/Dashboard";
 import AvatarContext from "../Api/contexts/AvatarContext";
+import { RxHamburgerMenu } from "react-icons/rx";
 
-const Headers = () => {
+const Headers = ({ handleToggleModal }) => {
   const [click, setClick] = useState(false);
   // const [dropdown, setDropdown] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -27,12 +26,6 @@ const Headers = () => {
       setOpen(false);
     };
   });
-
-  const Menu = ["Profile", "Logout"];
-
-  const handleToggleModal = () => {
-    setIsDashboardModalOpen(!isDashboardModalOpen);
-  };
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -53,10 +46,10 @@ const Headers = () => {
       <div className="flex flex-col items-center justify-center">
         <div className="text-gray-600 body-font flex justify-between items-center w-full">
           <div className="flex items-center gap-[20px]">
-            <div className="menu cursor-pointer p-[10px] md:hidden mt-[10px] text-amber-500">
-              <IoMenuOutline size={"3rem"} onClick={handleToggleModal} />
+            <div onClick={handleToggleModal} className="menu bg-amber-500 ml-[10px] hover:bg-[#ecb858ec] duration-300 rounded-full cursor-pointer md:hidden p-[7px] mt-[10px] text-white">
+              <RxHamburgerMenu size={"1.2rem"} />
             </div>
-            <div className="w-[50%]cursor-pointer">
+            <div className="w-[50%] cursor-pointer flex justify-center items-center">
               <Link to={"/"}>
                 <Point />
               </Link>
@@ -67,7 +60,7 @@ const Headers = () => {
               className="flex services cursor-pointer p-[10px] rounded-[30px] px-[20px] border-2 border-amber-500 items-center"
               onClick={toggleDropdown}
             >
-              <p className="font-semibold">{selectedItem}</p>
+              <p className="font-[590]">{selectedItem}</p>
               <RiArrowDownSFill />
               {/* Render dropdown if open */}
               {dropdownOpen && (
@@ -91,18 +84,27 @@ const Headers = () => {
               {open && (
                 <div
                   ref={menuRef}
-                  className="bg-white absolute top-[60px] p-4 w-[200px] shadow-lg"
+                  className="bg-white rounded-lg absolute top-[60px] p-[10px] w-[100px] shadow-lg"
                 >
                   <ul>
-                    {Menu.map((menu) => (
-                      <li
-                        onClick={() => setOpen(false)}
-                        className="p-2 hover:bg-amber-200 text-lg rounded cursor-pointer"
-                        key={menu}
-                      >
-                        {menu}
-                      </li>
-                    ))}
+                    <li
+                      onClick={() => setOpen(false)}
+                      className="p-1 px-2 hover:bg-amber-500 font-[590] text-black hover:text-white rounded cursor-pointer"
+
+                    >
+                      <Link to={"/person"}>
+                        Profile
+                      </Link>
+                    </li>
+                    <li
+                      onClick={() => setOpen(false)}
+                      className="p-1 px-2 hover:bg-amber-500 text-black hover:text-white font-[590] rounded cursor-pointer"
+
+                    >
+                      <Link to={"/"}>
+                        Logout
+                      </Link>
+                    </li>
                   </ul>
                 </div>
               )}
@@ -110,7 +112,7 @@ const Headers = () => {
             <Link to={"/orders"} className="cart-icon">
               <div className="relative w-11 pt-3">
                 <TiShoppingCart size={"2rem"} className="text-black" />
-                <span className="absolute rounded-xl bg-red-600 text-white border num w-4 top-1 right-0 text-sm flex items-center justify-center font-semibold">
+                <span className="absolute rounded-xl bg-red-600 text-white border num w-4 top-1 right-0 text-sm flex items-center justify-center font-[590]">
                   7
                 </span>
               </div>
