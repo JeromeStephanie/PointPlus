@@ -1,29 +1,28 @@
 import React, { useEffect, useRef, useState, Component } from "react";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import { motion } from "framer-motion";
 import { IoSearch } from "react-icons/io5";
-import Resturants from '../restuarants/Resturants'
-import AddToCartButton from "../../../Helper/AddToCartButton"
-import Icons from "../Header/Icons"
-import ResturantsDetails from "../restuarants/modal/ResturantsDetails"
+import Resturants from "../restuarants/Resturants";
+import AddToCartButton from "../../../Helper/AddToCartButton";
+import Icons from "../Header/Icons";
+import ResturantsDetails from "../restuarants/modal/ResturantsDetails";
 import { GiShop } from "react-icons/gi";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { BsFillHeartFill } from "react-icons/bs";
 import { Typewriter } from "react-simple-typewriter";
-import NavLinks from "../Header/nav-links/NavLinks"
+import NavLinks from "../Header/nav-links/NavLinks";
 import { LuThumbsUp } from "react-icons/lu";
-import LoginModal from "../login/LoginModal"
+import LoginModal from "../login/LoginModal";
 import Favorites from "./favorite/Favorites";
 import Dashboard from "../dashboard/Dashboard";
 import Products from "../Products";
 import { no_product } from "../../../Assets";
 
-const Header = ({
-  favoriteProducts,
-  setFavoriteProducts,
-  products
-}) => {
+const Header = ({ favoriteProducts, setFavoriteProducts, products }) => {
   const [rest] = useState(Resturants);
   const [error, setError] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -34,7 +33,7 @@ const Header = ({
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isDashboardModalOpen, setIsDashboardModalOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   const handleFavoriteClick = (product) => {
     setFavoriteProducts((prevFavorites) =>
@@ -53,7 +52,6 @@ const Header = ({
   useEffect(() => {
     setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
   }, []);
-
 
   const handleSearch = () => {
     const searchTermLower = searchTerm.toLowerCase();
@@ -94,16 +92,16 @@ const Header = ({
 
   const getCategoryResults = () => {
     switch (selectedCategory) {
-      case 'All':
+      case "All":
         return (
           <>
             {filteredRestaurants.length > 0 && filteredRestaurants}
             {filteredProducts.length > 0 && filteredProducts}
           </>
         );
-      case 'Restaurants':
+      case "Restaurants":
         return filteredRestaurants.length > 0 && filteredRestaurants;
-      case 'Products':
+      case "Products":
         return filteredProducts.length > 0 && filteredProducts;
       default:
         return null;
@@ -130,46 +128,50 @@ const Header = ({
     setIsDashboardModalOpen(false); // Close the 
   };
 
-  var settings = {
+  const settings = {
     dots: true,
     infinite: false,
-    speed: 400,
-    
+    speed: 500,
+
     slidesToScroll: 4,
+    slidesToShow: 4,
     initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: true
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+    // responsive: [
+    //   {
+    //     breakpoint: 1024,
+    //     settings: {
+    //       slidesToShow: 3,
+    //       slidesToScroll: 3,
+    //       infinite: true,
+    //       dots: true,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 600,
+    //     settings: {
+    //       slidesToShow: 2,
+    //       slidesToScroll: 2,
+    //       initialSlide: 2,
+    //     },
+    //   },
+    //   {
+    //     breakpoint: 480,
+    //     settings: {
+    //       slidesToShow: 1,
+    //       slidesToScroll: 1,
+    //     },
+    //   },
+    // ],
   };
 
   return (
     <div className="relative">
       <div className="w-full">
         <div className="search h-[480px] mb-[20px]">
-          <NavLinks handleOpenModal={handleOpenModal} handleToggleModal={handleToggleModal} />
+          <NavLinks
+            handleOpenModal={handleOpenModal}
+            handleToggleModal={handleToggleModal}
+          />
           <div className="content2 top-[30%] flex flex-col justify-center items-center w-[90%] left-[100%] -translate-x-[-6%] -translate-y-[-30%] gap-[20px]">
             <div className="p-[10px] font-sans h-[150px] mb-[5px] font-semibold text-[30px] w-[100%] flex justify-start items-center text-white">
               <div className="py-[30px] lg:ml-[250px] pl-[30px]">
@@ -204,7 +206,10 @@ const Header = ({
                   onChange={handleSearchChange}
                 />
               </div>
-              <div onClick={handleSearch} className="p-[10px] px-[40px] cursor-pointer rounded-r-[30px] text-white bg-amber-500 drop-shadow-xl hover:bg-[#ecb858ec] duration-300 shadow-[0px_4px_10px_#00000026]">
+              <div
+                onClick={handleSearch}
+                className="p-[10px] px-[40px] cursor-pointer rounded-r-[30px] text-white bg-amber-500 drop-shadow-xl hover:bg-[#ecb858ec] duration-300 shadow-[0px_4px_10px_#00000026]"
+              >
                 <p className="drop-shadow-xl font-[590]">Search</p>
               </div>
             </div>
@@ -217,20 +222,48 @@ const Header = ({
           </div>
         ) : (
           <>
-
             {filteredRestaurants.length > 0 || filteredProducts.length > 0 ? (
               <div className="search-results flex flex-col gap-5 p-4">
                 <div className="flex justify-center mt-6">
-                  <button onClick={() => handleCategoryClick('All')} className={`px-4 py-2 ${selectedCategory === 'All' ? 'bg-amber-500 text-white' : 'bg-gray-200 text-black'}`}>All</button>
-                  <button onClick={() => handleCategoryClick('Restaurants')} className={`px-4 py-2 mx-2 ${selectedCategory === 'Restaurants' ? 'bg-amber-500 text-white' : 'bg-gray-200 text-black'}`}>Restaurants</button>
-                  <button onClick={() => handleCategoryClick('Products')} className={`px-4 py-2 ${selectedCategory === 'Products' ? 'bg-amber-500 text-white' : 'bg-gray-200 text-black'}`}>Products</button>
+                  <button
+                    onClick={() => handleCategoryClick("All")}
+                    className={`px-4 py-2 ${
+                      selectedCategory === "All"
+                        ? "bg-amber-500 text-white"
+                        : "bg-gray-200 text-black"
+                    }`}
+                  >
+                    All
+                  </button>
+                  <button
+                    onClick={() => handleCategoryClick("Restaurants")}
+                    className={`px-4 py-2 mx-2 ${
+                      selectedCategory === "Restaurants"
+                        ? "bg-amber-500 text-white"
+                        : "bg-gray-200 text-black"
+                    }`}
+                  >
+                    Restaurants
+                  </button>
+                  <button
+                    onClick={() => handleCategoryClick("Products")}
+                    className={`px-4 py-2 ${
+                      selectedCategory === "Products"
+                        ? "bg-amber-500 text-white"
+                        : "bg-gray-200 text-black"
+                    }`}
+                  >
+                    Products
+                  </button>
                 </div>
                 <div className="restaurants-results">
                   {filteredRestaurants.length > 0 && (
                     <div className="xl:px-[50px] lg:p-[50px] p-[20px] Resturants">
                       <div className="flex items-center text-left mt-[5px] gap-1 mb-[20px] ">
                         <GiShop size={"1.5rem"} className="text-amber-500" />
-                        <p className="text-[20px] md:text-[25px] font-[590]">Restaurants matching your search</p>
+                        <p className="text-[20px] md:text-[25px] font-[590]">
+                          Restaurants matching your search
+                        </p>
                       </div>
                       <div className="resturants grid grid-cols-2 xl:grid-cols-4 lg:grid-cols-3 gap-5 p-4">
                         {filteredRestaurants.map((restaurant) => (
@@ -268,11 +301,40 @@ const Header = ({
                   {filteredProducts.length > 0 && (
                     <div className="sm:p-[50px] p-[20px] w-full">
                       <div className="flex justify-center mt-[10px]">
-                        <button onClick={() => handleCategoryClick('All')} className={`px-4 py-2 ${selectedCategory === 'All' ? 'bg-amber-500 text-white' : 'bg-gray-200 text-black'}`}>All</button>
-                        <button onClick={() => handleCategoryClick('Restaurants')} className={`px-4 py-2 mx-2 ${selectedCategory === 'Restaurants' ? 'bg-amber-500 text-white' : 'bg-gray-200 text-black'}`}>Restaurants</button>
-                        <button onClick={() => handleCategoryClick('Products')} className={`px-4 py-2 ${selectedCategory === 'Products' ? 'bg-amber-500 text-white' : 'bg-gray-200 text-black'}`}>Products</button>
+                        <button
+                          onClick={() => handleCategoryClick("All")}
+                          className={`px-4 py-2 ${
+                            selectedCategory === "All"
+                              ? "bg-amber-500 text-white"
+                              : "bg-gray-200 text-black"
+                          }`}
+                        >
+                          All
+                        </button>
+                        <button
+                          onClick={() => handleCategoryClick("Restaurants")}
+                          className={`px-4 py-2 mx-2 ${
+                            selectedCategory === "Restaurants"
+                              ? "bg-amber-500 text-white"
+                              : "bg-gray-200 text-black"
+                          }`}
+                        >
+                          Restaurants
+                        </button>
+                        <button
+                          onClick={() => handleCategoryClick("Products")}
+                          className={`px-4 py-2 ${
+                            selectedCategory === "Products"
+                              ? "bg-amber-500 text-white"
+                              : "bg-gray-200 text-black"
+                          }`}
+                        >
+                          Products
+                        </button>
                       </div>
-                      <p className="flex items-center text-left mt-[8px] gap-1 mb-[20px] text-[20px] md:text-[25px] font-[590]">Products matching your search</p>
+                      <p className="flex items-center text-left mt-[8px] gap-1 mb-[20px] text-[20px] md:text-[25px] font-[590]">
+                        Products matching your search
+                      </p>
                       <div className="products w-full grid grid-cols-2 xl:grid-cols-4 md:grid-cols-3 lg:grid-cols-4 gap-[10px] p-4">
                         {filteredProducts.map((product) => (
                           <div className="boxes h-auto overflow-hidden rounded-[15px] mb-[10px] drop-shadow-xl bg-[#ffa5004c] shadow-[0px_4px_10px_#00000026]">
@@ -299,10 +361,11 @@ const Header = ({
                             </div>
                             <span
                               onClick={() => handleFavoriteClick(product)}
-                              className={`absolute flex justify-center items-center top-4 right-4 border rounded-[20px] p-1 pt-[6px] cursor-pointer ${favoriteProducts.includes(product.id)
-                                ? "text-red-500 bg-white"
-                                : "text-amber-500 bg-gray-200"
-                                }`}
+                              className={`absolute flex justify-center items-center top-4 right-4 border rounded-[20px] p-1 pt-[6px] cursor-pointer ${
+                                favoriteProducts.includes(product.id)
+                                  ? "text-red-500 bg-white"
+                                  : "text-amber-500 bg-gray-200"
+                              }`}
                             >
                               <BsFillHeartFill />
                             </span>
@@ -316,28 +379,31 @@ const Header = ({
             ) : (
               <div>
                 <div>
-                      <div className="slider-container px-[30px] lg:px-[50px]">
+                  <div className="">
                     <Slider {...settings}>
-                      {Icons.map((icon) => {
-                        return (
-                          <div className="flex justify-center items-center flex-col gap-[15px]">
-                            <picture>
-                              <source media="(max-width: 768px)" srcSet={icon.img} />
-                              <img
-                                className="max-w-[40px] h-auto"
-                                src={icon.img}
-                                alt={icon.text}
-                              />
-                            </picture>
-                            <p>{icon.text}</p>
-                          </div>
-                        );
-                      })}
+                      {Icons.map((icon) => (
+                        <div>
+                          <picture>
+                            <source
+                              media="(max-width: 768px)"
+                              srcSet={icon.img}
+                            />
+                            <img
+                              className="max-w-[40px] h-auto"
+                              src={icon.img}
+                              alt={icon.text}
+                            />
+                          </picture>
+                          <p>{icon.text}</p>
+                        </div>
+                      ))}
                     </Slider>
                   </div>
                 </div>
                 <div className="xl:p-[50px] lg:p-[50px] p-[20px] w-full bg-gray-200">
-                  <p className="text-[20px] md:text-[25px] font-[590] mb-[20px]">Special Offers</p>
+                  <p className="text-[20px] md:text-[25px] font-[590] mb-[20px]">
+                    Special Offers
+                  </p>
                   <motion.div
                     ref={carousel}
                     whileTap={{ cursor: "grabbing" }}
@@ -373,10 +439,11 @@ const Header = ({
                           </div>
                           <span
                             onClick={() => handleFavoriteClick(product)}
-                            className={`absolute flex justify-center items-center top-4 right-4 border rounded-[20px] p-1 pt-[6px] cursor-pointer ${favoriteProducts.includes(product.id)
-                              ? "text-red-500 bg-white"
-                              : "text-amber-500 bg-gray-200"
-                              }`}
+                            className={`absolute flex justify-center items-center top-4 right-4 border rounded-[20px] p-1 pt-[6px] cursor-pointer ${
+                              favoriteProducts.includes(product.id)
+                                ? "text-red-500 bg-white"
+                                : "text-amber-500 bg-gray-200"
+                            }`}
                           >
                             <BsFillHeartFill />
                           </span>
@@ -393,7 +460,9 @@ const Header = ({
                 <div className="xl:px-[50px] lg:p-[50px] p-[20px] Resturants">
                   <div className="flex items-center text-left mt-[50px] gap-1 mb-[20px] ">
                     <GiShop size={"1.5rem"} className="text-amber-500" />
-                    <p className="text-[20px] md:text-[25px] font-[590]">Resturants you might like</p>
+                    <p className="text-[20px] md:text-[25px] font-[590]">
+                      Resturants you might like
+                    </p>
                   </div>
                   <ResturantsDetails
                     isOpen={!!selectedProduct}
@@ -455,10 +524,7 @@ const Header = ({
             )}
           </>
         )}
-
-
       </div>
-
     </div>
   );
 };
