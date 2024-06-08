@@ -244,9 +244,9 @@ const Header = ({
                               className="w-full h-[60%] object-cover cursor-pointer"
                               onClick={() => handleClickRestaurant(restaurant)}
                             />
-                            <div className="flex flex-col w-[100%] items-start justify-center px-5 pt-[10px] pb-5 gap-[8px]">
+                            <div className="flex flex-col w-[100%] items-start justify-center px-[8px] md:px-8 pt-[10px] pb-5 gap-[8px]">
                               <div className="text-left inline-block">
-                                <div className="font-h-3 w-full rest-text text-[20px] font-[number:var(--h-3-font-weight)] text-black tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
+                                <div className="font-h-3 w-full rest-text text-[15px] md:text-[20px] font-[number:var(--h-3-font-weight)] text-black tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
                                   {restaurant.name}
                                 </div>
                               </div>

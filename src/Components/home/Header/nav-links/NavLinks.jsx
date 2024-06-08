@@ -64,7 +64,7 @@ export default function NavLinks({ handleOpenModal, handleToggleModal }) {
               className="flex services cursor-pointer hover:bg-amber-500 hover:text-white p-[10px] rounded-[30px] px-[20px] border-2 border-amber-500  text-white items-center"
               onClick={toggleDropdown}
             >
-              <p className="font-semibold">{selectedItem}</p>
+              <p className="font-[590]">{selectedItem}</p>
               <RiArrowDownSFill />
               {/* Render dropdown if open */}
               {dropdownOpen && (
