@@ -127,7 +127,7 @@ const Header = ({
   };
 
   const handleToggleModalClose2 = () => {
-    setIsDashboardModalOpen(false); // Close the Dashboard
+    setIsDashboardModalOpen(false); // Close the 
   };
 
   var settings = {
