@@ -40,7 +40,7 @@ const Order = () => {
             </Link>
           </div>
           <div>
-            <p className="font-[number:var(--h-3-font-weight)] text-[40px] text-left text-black tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
+            <p className="font-[number:var(--h-3-font-weight)] text-[35px] lg:text-[40px] text-left text-black tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
               Cart
             </p>
           </div>
@@ -81,7 +81,7 @@ const Order = () => {
                 className="flex gap-2 justify-center items-center cursor-pointer"
               >
                 <FaArrowLeftLong className="text-amber-500" />
-                <p className="text-amber-500 py-[10px] font-semibold">
+                <p className="text-amber-500 py-[10px] font-[590]">
                   Continue Shopping
                 </p>
               </div>

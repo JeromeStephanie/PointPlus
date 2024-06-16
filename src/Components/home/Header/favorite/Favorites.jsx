@@ -19,7 +19,7 @@ const Favorites = ({ favoriteProducts, products, onRemoveFavorite }) => {
             <div className="flex justify-center items-center">
               <RiHeartAddFill size={"1.5rem"} className="text-amber-500" />
             </div>
-              <p className="text-[20px] md:text-[25px] [font-family:var(--h-3-font-family)] font-semibold">
+            <p className="text-[20px] md:text-[25px] [font-family:var(--h-3-font-family)] font-semibold">
               Favorites
             </p>
           </div>
@@ -54,11 +54,10 @@ const Favorites = ({ favoriteProducts, products, onRemoveFavorite }) => {
                 </div>
                 <span
                   onClick={() => onRemoveFavorite(product)}
-                  className={`absolute flex justify-center items-center top-4 right-4 border rounded-[20px] p-1 pt-[6px] cursor-pointer ${
-                    favoriteProducts.includes(product.id)
+                  className={`absolute flex justify-center items-center top-4 right-4 border rounded-[20px] p-1 pt-[6px] cursor-pointer ${favoriteProducts.includes(product.id)
                       ? "text-red-500 bg-white"
                       : "text-amber-500 bg-gray-200"
-                  }`}
+                    }`}
                 >
                   <BsFillHeartFill />
                 </span>
@@ -69,7 +68,7 @@ const Favorites = ({ favoriteProducts, products, onRemoveFavorite }) => {
       )}
       {favoriteItems.length > 4 && (
         <div className="mt-4 text-center">
-          <Link
+          <Link onClick={window.scrollTo(0, 0)}
             to="/favs"
             className="text-amber-500 text-[20px] md:text-[25px] font-semibold"
           >

@@ -4,7 +4,7 @@ import Money from './Money.png'
 import Payment from './Payment.png'
 import Browses from './Browse.png'
 import Slider from './Slider.png'
-import Tracks from './Track.png'
+import Track from './Track.png'
 import Transfer from './Transfer.png'
 import Welcomes from './Welcome.png'
 import Order from './Order.png'
@@ -41,10 +41,12 @@ import soup from './soup.png'
 import chicken from './chicken.png'
 import phone from './phone.png'
 import no_product from './no-product.png'
+import point1 from './point2.png'
 
 export {
   google,
   success,
+  point1,
   no_product,
   phone,
   chicken,
@@ -73,7 +75,7 @@ export {
   img_avatar,
   Browses,
   Slider,
-  Tracks,
+  Track,
   Tracker,
   Welcomes,
   Transfer,

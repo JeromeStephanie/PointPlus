@@ -4,24 +4,15 @@ import ContentSlide from "../about-us/content-slider/ContentSlide"
 import { FaArrowDownLong } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { burger, deliver, team } from "../../Assets";
-import { Typewriter } from "react-simple-typewriter";
 
 const AboutUs = () => {
   return (
     <div className="w-full">
-      <div className="aboutUs h-[480px] mb-[70px] [font-family:var(--logo-text-font-family)]">
+      <div className="aboutUs h-[480px] mb-[70px]">
         <AboutUSHeader />
-        {/* <div className="h-[500px] flex justify-center items-center">
-          <div className="content flex justify-center items-center">
-            <p className="text-amber-500 font-semibold text-[40px] text-center font-logo-text [font-family:var(--logo-text-font-family)]">
-              Our mission is to make food delivery easy, efficient, and enjoyable
-              for everyone
-            </p>
-          </div>
-        </div> */}
-        <div className="content2 top-[30%] border flex flex-col justify-center items-center w-[90%] left-[100%] -translate-x-[-6%] -translate-y-[-60%] gap-[20px]">
-          <div className="content flex justify-center items-center">
-            <p className="text-amber-500 font-semibold text-[40px] text-center font-logo-text [font-family:var(--logo-text-font-family)]">
+        <div className="content2 top-[10%] sm:top-[30%] flex flex-col justify-center items-center w-[90%] left-[100%] -translate-x-[-6%] -translate-y-[-60%] gap-[20px]">
+          <div className="">
+            <p className="text-amber-500 font-[590] md:text-[40px] text-[35px] md:text-center font-logo-text [font-family:var(--logo-text-font-family)]">
               Our mission is to make food delivery easy, efficient, and enjoyable
               for everyone
             </p>
@@ -38,10 +29,10 @@ const AboutUs = () => {
             <FaArrowDownLong className="text-amber-500" size={"2rem"} />
           </div>
         </div>
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-[20px] lg:grid-cols-2 px-[30px]">
+        <div className="grid [font-family:var(--logo-text-font-family)] grid-cols-1 xl:grid-cols-3 gap-[20px] lg:grid-cols-2 px-[30px]">
           <div className="flex flex-col justify-start border border-white drop-shadow-xl shadow-[0px_4px_10px_#00000026]">
             <div className="p-[20px]">
-              <p className="font-semibold text-[25px] mb-[20px]">
+              <p className="font-[590] text-[25px] mb-[20px]">
                 Start Vending
               </p>
               <p className="inline-block font-medium mb-[20px]">
@@ -57,7 +48,7 @@ const AboutUs = () => {
             </div>
             <img src={burger} className="w-full" alt="" />
           </div>
-          <div className="flex flex-col justify-start border border-white drop-shadow-xl shadow-[0px_4px_10px_#00000026]">
+          <div className="flex [font-family:var(--logo-text-font-family)] flex-col justify-start border border-white drop-shadow-xl shadow-[0px_4px_10px_#00000026]">
             <div className="p-[20px]">
               <p className="font-semibold text-[25px] mb-[20px]">
                 Deliver delight
@@ -77,7 +68,7 @@ const AboutUs = () => {
               <img src={deliver} className="w-full h-full" alt="" />
             </div>
           </div>
-          <div className="flex flex-col justify-start border border-white drop-shadow-xl shadow-[0px_4px_10px_#00000026]">
+          <div className="flex [font-family:var(--logo-text-font-family)] flex-col justify-start border border-white drop-shadow-xl shadow-[0px_4px_10px_#00000026]">
             <div className="p-[20px]">
               <p className="font-semibold text-[25px] mb-[20px]">
                 Behind the curtain

@@ -1,28 +1,31 @@
-import React, { useEffect, useRef, useState, Component } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 import { motion } from "framer-motion";
 import { IoSearch } from "react-icons/io5";
 import Resturants from "../restuarants/Resturants";
 import AddToCartButton from "../../../Helper/AddToCartButton";
 import Icons from "../Header/Icons";
 import ResturantsDetails from "../restuarants/modal/ResturantsDetails";
-import { GiShop } from "react-icons/gi";
+import { IoStorefrontOutline } from "react-icons/io5";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { BsFillHeartFill } from "react-icons/bs";
 import { Typewriter } from "react-simple-typewriter";
 import NavLinks from "../Header/nav-links/NavLinks";
 import { LuThumbsUp } from "react-icons/lu";
+import { MdLocalOffer } from "react-icons/md";
 import LoginModal from "../login/LoginModal";
 import Favorites from "./favorite/Favorites";
 import Dashboard from "../dashboard/Dashboard";
 import Products from "../Products";
 import { no_product } from "../../../Assets";
+import RestaurantsCards from "./Cards/RestaurantsCards";
+import ProductsCards from "./Cards/ProductsCards";
+import { useFavoriteProducts } from "../../../Api/contexts/FavoriteProductsContext";
 
-const Header = ({ favoriteProducts, setFavoriteProducts, products }) => {
+const Header = ({ products }) => {
   const [rest] = useState(Resturants);
   const [error, setError] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -34,26 +37,19 @@ const Header = ({ favoriteProducts, setFavoriteProducts, products }) => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isDashboardModalOpen, setIsDashboardModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All");
-
-  const handleFavoriteClick = (product) => {
-    setFavoriteProducts((prevFavorites) =>
-      prevFavorites.includes(product.id)
-        ? prevFavorites.filter((id) => id !== product.id)
-        : [...prevFavorites, product.id]
-    );
-  };
-
-  const handleRemoveFavorite = (product) => {
-    setFavoriteProducts((prevFavorites) =>
-      prevFavorites.filter((id) => id !== product.id)
-    );
-  };
-
+  const { favoriteProducts, handleAddFavorite, handleRemoveFavorite } = useFavoriteProducts();
   useEffect(() => {
     setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
   }, []);
 
   const handleSearch = () => {
+    if (!searchTerm.trim()) {
+      setFilteredRestaurants([]);
+      setFilteredProducts([]);
+      setError(false);
+      return;
+    }
+
     const searchTermLower = searchTerm.toLowerCase();
 
     const filteredRestaurants = Resturants.filter((restaurant) =>
@@ -86,26 +82,55 @@ const Header = ({ favoriteProducts, setFavoriteProducts, products }) => {
     }
   };
 
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-  };
-
   const getCategoryResults = () => {
-    switch (selectedCategory) {
-      case "All":
-        return (
-          <>
-            {filteredRestaurants.length > 0 && filteredRestaurants}
-            {filteredProducts.length > 0 && filteredProducts}
-          </>
-        );
-      case "Restaurants":
-        return filteredRestaurants.length > 0 && filteredRestaurants;
-      case "Products":
-        return filteredProducts.length > 0 && filteredProducts;
-      default:
-        return null;
+    const filteredRestaurants = rest.filter((restaurant) =>
+      restaurant.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    const filteredProducts = products.filter((product) =>
+      product.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    if (selectedCategory === "All") {
+      return (
+        <>
+          <RestaurantsCards
+            filteredRestaurants={filteredRestaurants}
+            handleClickRestaurant={handleClickRestaurant}
+            selectedProduct={selectedProduct}
+            handleAddFavorite={handleAddFavorite}
+            favoriteProducts={favoriteProducts}
+            onRemoveFavorite={handleRemoveFavorite}
+          />
+          <ProductsCards
+            filteredProducts={filteredProducts}
+            favoriteProducts={favoriteProducts}
+            handleAddFavorite={handleAddFavorite}
+            onRemoveFavorite={handleRemoveFavorite}
+          />
+        </>
+      );
+    } else if (selectedCategory === "Restaurants") {
+      return (
+        <RestaurantsCards
+          filteredRestaurants={filteredRestaurants}
+          handleClickRestaurant={handleClickRestaurant}
+          selectedProduct={selectedProduct}
+          handleAddFavorite={handleAddFavorite}
+          favoriteProducts={favoriteProducts}
+          onRemoveFavorite={handleRemoveFavorite}
+        />
+      );
+    } else if (selectedCategory === "Products") {
+      return (
+        <ProductsCards
+          filteredProducts={filteredProducts}
+          favoriteProducts={favoriteProducts}
+          handleAddFavorite={handleAddFavorite}
+          onRemoveFavorite={handleRemoveFavorite}
+        />
+      );
     }
+    return null;
   };
 
   const handleClickRestaurant = (resturants) => {
@@ -129,39 +154,38 @@ const Header = ({ favoriteProducts, setFavoriteProducts, products }) => {
   };
 
   const settings = {
-    dots: true,
     infinite: false,
     speed: 500,
 
-    slidesToScroll: 4,
-    slidesToShow: 4,
+    slidesToScroll: 7,
+    slidesToShow: 7,
     initialSlide: 0,
-    // responsive: [
-    //   {
-    //     breakpoint: 1024,
-    //     settings: {
-    //       slidesToShow: 3,
-    //       slidesToScroll: 3,
-    //       infinite: true,
-    //       dots: true,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 600,
-    //     settings: {
-    //       slidesToShow: 2,
-    //       slidesToScroll: 2,
-    //       initialSlide: 2,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 480,
-    //     settings: {
-    //       slidesToShow: 1,
-    //       slidesToScroll: 1,
-    //     },
-    //   },
-    // ],
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 7,
+          slidesToScroll: 7,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 5,
+          initialSlide: 5,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 5,
+          initialSlide: 5,
+        },
+      },
+    ],
   };
 
   return (
@@ -204,6 +228,7 @@ const Header = ({ favoriteProducts, setFavoriteProducts, products }) => {
                   autoComplete="off"
                   value={searchTerm}
                   onChange={handleSearchChange}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
                 />
               </div>
               <div
@@ -224,186 +249,72 @@ const Header = ({ favoriteProducts, setFavoriteProducts, products }) => {
           <>
             {filteredRestaurants.length > 0 || filteredProducts.length > 0 ? (
               <div className="search-results flex flex-col gap-5 p-4">
-                <div className="flex justify-center mt-6">
+                <div className="category-selector text-lg flex justify-center items-center gap-5 mt-5">
                   <button
-                    onClick={() => handleCategoryClick("All")}
-                    className={`px-4 py-2 ${
-                      selectedCategory === "All"
-                        ? "bg-amber-500 text-white"
-                        : "bg-gray-200 text-black"
-                    }`}
+                    className={`p-[10px] font-[500] mx-[3px] border-b-2 ${selectedCategory === "All"
+                      ? "border-amber-500 text-amber-500"
+                      : "border-transparent"
+                      }`}
+                    onClick={() => setSelectedCategory("All")}
                   >
                     All
                   </button>
                   <button
-                    onClick={() => handleCategoryClick("Restaurants")}
-                    className={`px-4 py-2 mx-2 ${
-                      selectedCategory === "Restaurants"
-                        ? "bg-amber-500 text-white"
-                        : "bg-gray-200 text-black"
-                    }`}
+                    className={`p-[10px] font-[500] mx-[3px] border-b-2 ${selectedCategory === "Restaurants"
+                      ? "border-amber-500 text-amber-500"
+                      : "border-transparent"
+                      }`}
+                    onClick={() => setSelectedCategory("Restaurants")}
                   >
                     Restaurants
                   </button>
                   <button
-                    onClick={() => handleCategoryClick("Products")}
-                    className={`px-4 py-2 ${
-                      selectedCategory === "Products"
-                        ? "bg-amber-500 text-white"
-                        : "bg-gray-200 text-black"
-                    }`}
+                    className={`p-[10px] font-[500] mx-[3px] border-b-2 ${selectedCategory === "Products"
+                      ? "border-amber-500 text-amber-500"
+                      : "border-transparent"
+                      }`}
+                    onClick={() => setSelectedCategory("Products")}
                   >
                     Products
                   </button>
                 </div>
-                <div className="restaurants-results">
-                  {filteredRestaurants.length > 0 && (
-                    <div className="xl:px-[50px] lg:p-[50px] p-[20px] Resturants">
-                      <div className="flex items-center text-left mt-[5px] gap-1 mb-[20px] ">
-                        <GiShop size={"1.5rem"} className="text-amber-500" />
-                        <p className="text-[20px] md:text-[25px] font-[590]">
-                          Restaurants matching your search
-                        </p>
-                      </div>
-                      <div className="resturants grid grid-cols-2 xl:grid-cols-4 lg:grid-cols-3 gap-5 p-4">
-                        {filteredRestaurants.map((restaurant) => (
-                          <div
-                            key={restaurant.id}
-                            className="boxes rounded-[20px] h-[200px] drop-shadow-xl bg-[#ffa5004c] overflow-hidden shadow-[0px_4px_10px_#00000026] transform transition-transform duration-300 hover:scale-105"
-                          >
-                            <img
-                              src={restaurant.img}
-                              alt={restaurant.name}
-                              className="w-full h-[60%] object-cover cursor-pointer"
-                              onClick={() => handleClickRestaurant(restaurant)}
-                            />
-                            <div className="flex flex-col w-[100%] items-start justify-center px-[8px] md:px-8 pt-[10px] pb-5 gap-[8px]">
-                              <div className="text-left inline-block">
-                                <div className="font-h-3 w-full rest-text text-[15px] md:text-[20px] font-[number:var(--h-3-font-weight)] text-black tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
-                                  {restaurant.name}
-                                </div>
-                              </div>
-                              <div className="flex justify-center gap-2 items-center">
-                                <div>
-                                  <LuThumbsUp size={"1.2rem"} />
-                                </div>
-                                <p>90%</p>
-                                <p className="text-gray-600">(200+)</p>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-                <div className="products-results">
-                  {filteredProducts.length > 0 && (
-                    <div className="sm:p-[50px] p-[20px] w-full">
-                      <div className="flex justify-center mt-[10px]">
-                        <button
-                          onClick={() => handleCategoryClick("All")}
-                          className={`px-4 py-2 ${
-                            selectedCategory === "All"
-                              ? "bg-amber-500 text-white"
-                              : "bg-gray-200 text-black"
-                          }`}
-                        >
-                          All
-                        </button>
-                        <button
-                          onClick={() => handleCategoryClick("Restaurants")}
-                          className={`px-4 py-2 mx-2 ${
-                            selectedCategory === "Restaurants"
-                              ? "bg-amber-500 text-white"
-                              : "bg-gray-200 text-black"
-                          }`}
-                        >
-                          Restaurants
-                        </button>
-                        <button
-                          onClick={() => handleCategoryClick("Products")}
-                          className={`px-4 py-2 ${
-                            selectedCategory === "Products"
-                              ? "bg-amber-500 text-white"
-                              : "bg-gray-200 text-black"
-                          }`}
-                        >
-                          Products
-                        </button>
-                      </div>
-                      <p className="flex items-center text-left mt-[8px] gap-1 mb-[20px] text-[20px] md:text-[25px] font-[590]">
-                        Products matching your search
-                      </p>
-                      <div className="products w-full grid grid-cols-2 xl:grid-cols-4 md:grid-cols-3 lg:grid-cols-4 gap-[10px] p-4">
-                        {filteredProducts.map((product) => (
-                          <div className="boxes h-auto overflow-hidden rounded-[15px] mb-[10px] drop-shadow-xl bg-[#ffa5004c] shadow-[0px_4px_10px_#00000026]">
-                            <img
-                              src={product.img}
-                              alt={product.title}
-                              className="w-full rounded-[15px] h-[60%] object-cover cursor-pointer  transform transition-transform duration-300 hover:scale-105"
-                            />
-                            <div className="flex flex-shrink py-[10px] justify-between">
-                              <div className="font-[number:var(--h-3-font-weight)] pl-[15px] text-black text-[length:var(--h-3-font-size)] tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
-                                {product.title}
-                              </div>
-                              <div className="font-[number:var(--h-3-font-weight)] pr-[15px] text-black text-[length:var(--h-3-font-size)] tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
-                                N{product.price.toLocaleString()}
-                              </div>
-                            </div>
-                            <div className="flex justify-between px-[10px]">
-                              <div>
-                                <AddToCartButton product={product} />
-                              </div>
-                              <div className="flex justify-center items-center bg-amber-500 px-2 drop-shadow-xl bg-[#ffa5004c] shadow-[0px_4px_10px_#00000026] font-h-3 font-[number:var(--h-3-font-weight)] text-black text-[length:var(--h-3-font-size)] tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
-                                Add to Cart
-                              </div>
-                            </div>
-                            <span
-                              onClick={() => handleFavoriteClick(product)}
-                              className={`absolute flex justify-center items-center top-4 right-4 border rounded-[20px] p-1 pt-[6px] cursor-pointer ${
-                                favoriteProducts.includes(product.id)
-                                  ? "text-red-500 bg-white"
-                                  : "text-amber-500 bg-gray-200"
-                              }`}
-                            >
-                              <BsFillHeartFill />
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
+                {getCategoryResults()}
               </div>
             ) : (
               <div>
                 <div>
-                  <div className="">
+                  <div className="lg:px-[50px] w-[100%] px-[20px] mb-[20px]">
                     <Slider {...settings}>
                       {Icons.map((icon) => (
-                        <div>
-                          <picture>
-                            <source
-                              media="(max-width: 768px)"
-                              srcSet={icon.img}
-                            />
-                            <img
-                              className="max-w-[40px] h-auto"
-                              src={icon.img}
-                              alt={icon.text}
-                            />
-                          </picture>
-                          <p>{icon.text}</p>
+                        <div className="flex flex-col gap-[10px] items-center justify-center">
+                          <div className="flex justify-center items-center">
+                            <picture>
+                              <source
+                                media="(max-width: 768px)"
+                                srcSet={icon.img}
+                              />
+                              <img
+                                className="max-w-[40px] h-auto"
+                                src={icon.img}
+                                alt={icon.text}
+                              />
+                            </picture>
+                          </div>
+                          <div className="flex justify-center items-center">
+                            <p>{icon.text}</p>
+                          </div>
                         </div>
                       ))}
                     </Slider>
                   </div>
                 </div>
                 <div className="xl:p-[50px] lg:p-[50px] p-[20px] w-full bg-gray-200">
-                  <p className="text-[20px] md:text-[25px] font-[590] mb-[20px]">
-                    Special Offers
-                  </p>
+                  <div className="flex items-center text-left gap-1 mb-[20px] ">
+                    <MdLocalOffer size={"1.5rem"} className="text-amber-500" />
+                    <p className="text-[20px] md:text-[25px] font-[590]">
+                      Special Offers
+                    </p>
+                  </div>
                   <motion.div
                     ref={carousel}
                     whileTap={{ cursor: "grabbing" }}
@@ -438,12 +349,11 @@ const Header = ({ favoriteProducts, setFavoriteProducts, products }) => {
                             </div>
                           </div>
                           <span
-                            onClick={() => handleFavoriteClick(product)}
-                            className={`absolute flex justify-center items-center top-4 right-4 border rounded-[20px] p-1 pt-[6px] cursor-pointer ${
-                              favoriteProducts.includes(product.id)
-                                ? "text-red-500 bg-white"
-                                : "text-amber-500 bg-gray-200"
-                            }`}
+                            onClick={() => handleAddFavorite(product)}
+                            className={`absolute flex justify-center items-center top-4 right-4 border rounded-[20px] p-1 pt-[6px] cursor-pointer ${favoriteProducts.includes(product.id)
+                              ? "text-red-500 bg-white"
+                              : "text-amber-500 bg-gray-200"
+                              }`}
                           >
                             <BsFillHeartFill />
                           </span>
@@ -459,7 +369,7 @@ const Header = ({ favoriteProducts, setFavoriteProducts, products }) => {
                 />
                 <div className="xl:px-[50px] lg:p-[50px] p-[20px] Resturants">
                   <div className="flex items-center text-left mt-[50px] gap-1 mb-[20px] ">
-                    <GiShop size={"1.5rem"} className="text-amber-500" />
+                    <IoStorefrontOutline size={"1.5rem"} className="text-amber-500" />
                     <p className="text-[20px] md:text-[25px] font-[590]">
                       Resturants you might like
                     </p>
@@ -468,7 +378,7 @@ const Header = ({ favoriteProducts, setFavoriteProducts, products }) => {
                     isOpen={!!selectedProduct}
                     onClose={() => setSelectedProduct(null)}
                     rest={selectedProduct}
-                    handleFavoriteClick={handleFavoriteClick}
+                    handleAddFavorite={handleAddFavorite}
                     favoriteProducts={favoriteProducts}
                   />
                   <div>
@@ -525,7 +435,7 @@ const Header = ({ favoriteProducts, setFavoriteProducts, products }) => {
           </>
         )}
       </div>
-    </div>
+    </div >
   );
 };
 

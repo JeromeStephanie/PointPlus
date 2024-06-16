@@ -3,20 +3,17 @@ import { ProductContext } from "../../../Context/ProductContext";
 import { motion } from "framer-motion";
 import { BsFillHeartFill } from "react-icons/bs";
 import AddToCartButton from "../../../Helper/AddToCartButton";
+import { useFavoriteProducts } from "../../../Api/contexts/FavoriteProductsContext";
 
 const SimilarProduct = () => {
   const { Products } = useContext(ProductContext);
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const { favoriteProducts, handleAddFavorite, handleRemoveFavorite } = useFavoriteProducts();
   const [width, setWidth] = useState(0);
   const carousel = useRef();
 
   useEffect(() => {
     setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
   }, []);
-
-  const handleClickProduct = (product) => {
-    setSelectedProduct(product); // Set the selected product when clicked
-  };
 
   return (
     <div className="mt-[-20px] m-[30px]">
@@ -53,7 +50,13 @@ const SimilarProduct = () => {
                   Add to Cart
                 </div>
               </div>
-              <span className="absolute flex justify-center items-center top-4 text-amber-500 bg-gray-200 right-4 border rounded-[20px] p-1 pt-[6px]  cursor-pointer">
+              <span
+                onClick={() => handleAddFavorite(products)}
+                className={`absolute flex justify-center items-center top-4 right-4 border rounded-[20px] p-1 pt-[6px] cursor-pointer ${favoriteProducts.includes(products.id)
+                  ? "text-red-500 bg-white"
+                  : "text-amber-500 bg-gray-200"
+                  }`}
+              >
                 <BsFillHeartFill />
               </span>
             </motion.div>

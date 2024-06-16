@@ -13,8 +13,8 @@ const Content = () => {
   }
 
   return (
-    <div>
-      <p className='text-lg font-semibold'>Frequency Asked Questions</p>
+    <div className='h-screen'>
+      <p className='text-lg font-[590]'>Frequency Asked Questions</p>
       {data.map((item, i) => (
         <div
           key={i}
@@ -22,14 +22,14 @@ const Content = () => {
         >
           <div
             onClick={() => toggle(i)}
-            className="text-black items-center font-semibold tracking-wide lg:font-bold flex justify-between p-[10px] cursor-pointer"
+            className="text-black items-center font-[590] tracking-wide lg:font-[590] flex justify-between p-[10px] cursor-pointer"
           >
             <p
-              className={selected === i ? "font-semibold lg:font-bold text-amber-500" : ""}
+              className={selected === i ? "font-[590] lg:font-[590] text-amber-500" : ""}
             >
               {item.question}
             </p>
-            <span className={`px-[10px] text-[20px] ${selected === i ? "font-semibold lg:font-bold text-amber-500" : ""}`}>
+            <span className={`px-[10px] text-[20px] ${selected === i ? "font-[590] lg:font-[590] text-amber-500" : ""}`}>
               {selected === i ? "-" : "+"}
             </span>
           </div>

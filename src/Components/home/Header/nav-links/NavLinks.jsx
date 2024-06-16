@@ -40,7 +40,7 @@ export default function NavLinks({ handleOpenModal, handleToggleModal }) {
   console.log(handleClick);
 
   return (
-    <div className="w-full NavLink pb-[20px] px-[50px] h-20 border-b-[1px] border-b-white left-0 sticky top-0 z-50 bg-transparent drop-shadow-xl shadow-[0px_4px_10px_#00000026]">
+    <div className="w-full NavLink pb-[20px] px-[50px] h-20 border-b-[1px] border-b-white left-0 sticky top-0 z-50 bg-transparent drop-shadow-xl tracking-wide shadow-[0px_4px_10px_#00000026]">
       <div className="flex flex-col h-20 items-center justify-center">
         <div className="text-gray-600 body-font flex justify-between items-center w-full">
           <div className="flex items-center gap-[15px]">
@@ -75,15 +75,24 @@ export default function NavLinks({ handleOpenModal, handleToggleModal }) {
                 />
               )}
             </div>
+            <Link to={"/orders"} className="cart-icon">
+              <div className="relative w-11 pt-3">
+                <TiShoppingCart size={"2rem"} className="text-amber-500" />
+                <span className="absolute rounded-xl bg-red-600 text-white border num w-4 top-1 right-0 text-sm flex items-center justify-center font-semibold">
+                  7
+                </span>
+              </div>
+            </Link>
             <div className=" flex flex-col relative gap-[10px] justify-center items-center">
-              <div className="w-[52px] border-2 border-gray-400 cursor-pointer h-[52px] rounded-full flex justify-center items-center">
-                <img
-                  ref={imgRef}
-                  src={avatar}
-                  className="w-full h-full object-cover rounded-full"
-                  alt="avatar"
-                  onClick={() => setOpen(!open)}
-                />
+              <div onClick={() => setOpen(!open)} ref={imgRef} className="flex cursor-pointer gap-2 items-center">
+                <div className="w-[52px] border-2 border-gray-400 cursor-pointer h-[52px] rounded-full flex justify-center items-center">
+                  <img
+                    src={avatar}
+                    className="w-full h-full object-cover rounded-full"
+                    alt="avatar"
+                  />
+                </div>
+                <p className="text-white name font-medium text-sm">Stephanie</p>
               </div>
               {open && (
                 <div
@@ -113,14 +122,6 @@ export default function NavLinks({ handleOpenModal, handleToggleModal }) {
                 </div>
               )}
             </div>
-            <Link to={"/orders"} className="cart-icon">
-              <div className="relative w-11 pt-3">
-                <TiShoppingCart size={"2rem"} className="text-amber-500" />
-                <span className="absolute rounded-xl bg-red-600 text-white border num w-4 top-1 right-0 text-sm flex items-center justify-center font-semibold">
-                  7
-                </span>
-              </div>
-            </Link>
           </div>
         </div>
       </div>

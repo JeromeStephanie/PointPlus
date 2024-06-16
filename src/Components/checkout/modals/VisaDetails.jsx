@@ -52,7 +52,7 @@ const VisaDetails = ({ isOpen, onClose }) => {
 
             <div className="border bg-gray-200 mt-[20px] rounded-[20px] p-[20px] drop-shadow-xl shadow-[0px_4px_10px_#00000026]">
               <div className="text-left">
-                <p className="font-semibold">Card Number</p>
+                <p className="font-[590]">Card Number</p>
                 <div className="flex my-3 bg-white items-center drop-shadow-xl shadow-[0px_4px_10px_#00000026] appearance-none border rounded-[20px]">
                   <div className="p-[10px]">
                     <FaRegCreditCard />
@@ -69,7 +69,7 @@ const VisaDetails = ({ isOpen, onClose }) => {
               </div>
               <div className="flex w-full gap-3 text-left">
                 <div>
-                  <p className="font-semibold">Expiry Date</p>
+                  <p className="font-[590]">Expiry Date</p>
                   <div className="bg-white flex my-3 items-center drop-shadow-xl shadow-[0px_4px_10px_#00000026]  focus:border-amber-500  border rounded-[20px]">
                     <div className="p-[10px]">
                       <TiCalendar />
@@ -85,7 +85,7 @@ const VisaDetails = ({ isOpen, onClose }) => {
                   </div>
                 </div>
                 <div>
-                  <p className="font-semibold">CVV</p>
+                  <p className="font-[590]">CVV</p>
                   <div className="flex bg-white my-3 items-center drop-shadow-xl shadow-[0px_4px_10px_#00000026] appearance-none border rounded-[20px]">
                     <div className="p-[10px]">
                       <FiLock />
@@ -109,7 +109,7 @@ const VisaDetails = ({ isOpen, onClose }) => {
               <IoClose size={"1.5rem"} />
             </span>
             <div className="flex w-full justify-between items-center my-[20px]">
-              <p className="font-semibold">Save Card Details</p>
+              <p className="font-[590]">Save Card Details</p>
               <div className="bg-white text-amber-500">
                 <BsToggle2On size={"1.5rem"} />
               </div>
@@ -117,7 +117,7 @@ const VisaDetails = ({ isOpen, onClose }) => {
             <div className="flex flex-col justify-center items-center gap-[20px]">
               <p
                 onClick={onClose}
-                className="font-semibold text-amber-500 cursor-pointer"
+                className="font-[590] text-amber-500 cursor-pointer"
               >
                 Use Another Payment Method?
               </p>

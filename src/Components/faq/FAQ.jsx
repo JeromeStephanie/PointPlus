@@ -5,15 +5,11 @@ import Content from './SubComponents/Content'
 
 const FAQ = () => {
     return (
-        <div className='w-full h-screen flex flex-col'>
+        <div className=''>
             <AboutUSHeader />
-            <div className='flex mt-[50px] w-full h-[500px] overflow-hidden'>
-                <div className='w-[40%] flex justify-center items-center'>
-                    <IntroText />
-                </div>
-                <div className='w-[60%] overflow-y-auto'>
-                    <Content />
-                </div>
+            <div className=''>
+                <div><IntroText /></div>
+                <div><Content /></div>
             </div>
         </div>
     )

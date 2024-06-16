@@ -6,16 +6,16 @@ import { IoClose } from "react-icons/io5";
 import { LuThumbsUp } from "react-icons/lu";
 import { RiEBike2Line } from "react-icons/ri";
 import { TfiTimer } from "react-icons/tfi";
+import { useFavoriteProducts } from "../../../../Api/contexts/FavoriteProductsContext";
 
 const ResturantsDetails = ({
   isOpen,
   onClose,
   rest,
-  handleFavoriteClick,
-  favoriteProducts,
 }) => {
   const [product] = useState(Products);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const { favoriteProducts, handleAddFavorite, handleRemoveFavorite } = useFavoriteProducts();
 
   const filterProducts = () => {
     if (!selectedCategory) return product;
@@ -25,7 +25,7 @@ const ResturantsDetails = ({
     <div>
       {isOpen && (
         <div className="modal-overlay">
-          <div className="modal-content h-[95vh] flex-col xl:w-[95%] lg:w-[95%] w-full overflow-hidden overflow-y-auto drop-shadow-xl bg-white shadow-[0px_4px_10px_#00000026]">
+          <div className="modal-content h-screen flex-col w-full overflow-hidden overflow-y-auto drop-shadow-xl bg-white shadow-[0px_4px_10px_#00000026]">
             <div className=" text-left flex flex-col">
               <div className="h-[200px]">
                 <img
@@ -167,7 +167,7 @@ const ResturantsDetails = ({
                     </div>
                   </div>
                   <span
-                    onClick={() => handleFavoriteClick(product)}
+                    onClick={() => handleAddFavorite(product)}
                     className={`absolute flex justify-center items-center top-4 right-4 border rounded-[20px] p-1 pt-[6px] cursor-pointer ${
                       favoriteProducts.includes(product.id)
                         ? "text-red-500 bg-white"

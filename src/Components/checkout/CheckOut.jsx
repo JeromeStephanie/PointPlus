@@ -50,7 +50,7 @@ const CheckOut = () => {
             </Link>
           </div>
           <div>
-            <p className="font-[number:var(--h-3-font-weight)] text-[40px] text-left text-black tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
+            <p className="font-[number:var(--h-3-font-weight)] text-[30px] lg:text-[40px] text-left text-black tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
               Checkout
             </p>
           </div>
@@ -67,7 +67,7 @@ const CheckOut = () => {
         <form className=" lg:px-[30px] flex flex-col w-full gap-5">
           <div className="flex w-full checkout_flex">
             <div className="delivery_details w-[50%] h-auto">
-              <p className="text-left mt-[40px] font-bold text-[20px]">
+              <p className="text-left mt-[40px] font-[590] text-[20px]">
                 Delivery Details
               </p>
               <div action="#">
@@ -126,7 +126,7 @@ const CheckOut = () => {
             </div>
             <div className="payment_details flex justify-center items-center p-5 w-[50%] max-h-full">
               <div className="bg-gray-100 sticky rounded-[10px] p-6 drop-shadow-xl shadow-[0px_4px_10px_#00000026]">
-                <p className="text-left font-bold text-[20px]">
+                <p className="text-left lg:font-[590] font-medium  text-[20px]">
                   Payment Methods
                 </p>
                 <div
@@ -140,7 +140,7 @@ const CheckOut = () => {
                         className="w-[20%]"
                         alt="mastercard"
                       />
-                      <p className="font-semibold text-lg">Card</p>
+                      <p className="font-[590] text-lg">Card</p>
                     </div>
                     <div className="border mr-1 rounded-[10px] text-gray-200">
                       <FaCircle
@@ -161,7 +161,7 @@ const CheckOut = () => {
                   <div className="flex text-left justify-between w-full items-center">
                     <div className="flex gap-6 items-center">
                       <img src={visa} className="w-[20%]" alt="visa" />
-                      <p className="font-semibold text-lg">Visa</p>
+                      <p className="font-[590] text-lg">Visa</p>
                     </div>
                     <div className="mr-1 rounded-[10px] text-gray-200">
                       <FaCircle
@@ -181,7 +181,7 @@ const CheckOut = () => {
                   <div className="flex text-left justify-between items-center w-full">
                     <div className="flex gap-7 items-center">
                       <img src={opay} className="w-[20%]" alt="opay" />
-                      <p className="font-semibold text-lg">Opay</p>
+                      <p className="font-[590] text-lg">Opay</p>
                     </div>
                     <div className="mr-1 rounded-[10px] text-gray-200">
                       <FaCircle
@@ -198,13 +198,13 @@ const CheckOut = () => {
             </div>
           </div>
           <div className="flex flex-col justify-center items-center w-full">
-            <div className="flex justify-between mt-[20px]">
-              <p className="text-[20px] font-bold">Save Delivery Details?</p>
+            <div className="flex justify-between gap-2 items-center mt-[20px]">
+              <p className="text-[20px] lg:font-[590] font-medium">Save Delivery Details?</p>
               <BsToggleOn size={"2rem"} className="text-amber-500" />
             </div>
             <div
               onClick={handleCheckOutClick}
-              className="bg-amber-500 flex justify-center w-[40%] items-center p-[10px] px-[10%] mt-[20px] font-bold drop-shadow-xl shadow-[0px_4px_10px_#00000026]"
+              className="bg-amber-500 flex justify-center w-[40%] items-center p-[10px] px-[10%] mt-[20px] font-[590] cursor-pointer drop-shadow-xl shadow-[0px_4px_10px_#00000026]"
             >
               <p>Checkout</p>
             </div>

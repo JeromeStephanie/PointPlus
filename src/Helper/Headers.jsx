@@ -42,7 +42,7 @@ const Headers = ({ handleToggleModal }) => {
   const closeMobileMenu = () => setClick(false);
 
   return (
-    <div className="w-full Headers px-[50px] h-20 border-b-[1px] border-b-white sticky top-0 z-50 bg-white drop-shadow-xl shadow-[0px_4px_10px_#00000026]">
+    <div className="w-full Headers px-[80px] h-20 border-b-[1px] border-b-white sticky top-0 z-50 bg-white drop-shadow-xl shadow-[0px_4px_10px_#00000026]">
       <div className="flex flex-col items-center justify-center">
         <div className="text-gray-600 body-font flex justify-between items-center w-full">
           <div className="flex items-center gap-[20px]">
@@ -71,15 +71,24 @@ const Headers = ({ handleToggleModal }) => {
                 />
               )}
             </div>
+            <Link to={"/orders"} className="cart-icon">
+              <div className="relative w-11 pt-3">
+                <TiShoppingCart size={"2rem"} className="text-black" />
+                <span className="absolute rounded-xl bg-red-600 text-white border num w-4 top-1 right-0 text-sm flex items-center justify-center font-[590]">
+                  7
+                </span>
+              </div>
+            </Link>
             <div className="flex flex-col relative gap-[10px] justify-center items-center">
-              <div className="w-[52px] border-2 border-gray-400 cursor-pointer h-[52px] rounded-full flex justify-center items-center">
-                <img
-                  ref={imgRef}
-                  src={avatar}
-                  className="w-full h-full object-cover rounded-full"
-                  alt="avatar"
-                  onClick={() => setOpen(!open)}
-                />
+              <div onClick={() => setOpen(!open)} ref={imgRef} className="flex cursor-pointer gap-2 items-center">
+                <div className="w-[52px] border-2 border-gray-400 cursor-pointer h-[52px] rounded-full flex justify-center items-center">
+                  <img
+                    src={avatar}
+                    className="w-full h-full object-cover rounded-full"
+                    alt="avatar"
+                  />
+                </div>
+                <p className="text-black name font-medium text-sm">Stephanie</p>
               </div>
               {open && (
                 <div
@@ -109,14 +118,6 @@ const Headers = ({ handleToggleModal }) => {
                 </div>
               )}
             </div>
-            <Link to={"/orders"} className="cart-icon">
-              <div className="relative w-11 pt-3">
-                <TiShoppingCart size={"2rem"} className="text-black" />
-                <span className="absolute rounded-xl bg-red-600 text-white border num w-4 top-1 right-0 text-sm flex items-center justify-center font-[590]">
-                  7
-                </span>
-              </div>
-            </Link>
           </div>
         </div>
       </div>

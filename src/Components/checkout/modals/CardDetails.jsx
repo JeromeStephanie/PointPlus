@@ -5,6 +5,7 @@ import { FiLock } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
 import { BsToggle2On } from "react-icons/bs";
 import SuccessModal from "../modals/SuccessModal";
+import { masterCard } from "../../../Assets";
 
 const CardDetails = ({ isOpen, onClose }) => {
   const [cardNumber, setCardNumber] = useState("");
@@ -47,11 +48,13 @@ const CardDetails = ({ isOpen, onClose }) => {
             onClose={handleSuccessModalClose}
           />
           <form className="modal-content card_details rounded-[20px] p-[20px] px-[40px] h-auto flex-col w-auto overflow-hidden overflow-y-auto drop-shadow-xl bg-white shadow-[0px_4px_10px_#00000026]">
-            <p className="text-[25px] font-semibold">Card Information</p>
+            <div className="w-full pl-[150px]">
+              <img src={masterCard} className="w-[40%]" alt="visa" />
+            </div>
 
             <div className="border bg-gray-200 mt-[20px] rounded-[20px] p-[20px] drop-shadow-xl shadow-[0px_4px_10px_#00000026]">
               <div className="text-left">
-                <p className="font-semibold">Card Number</p>
+                <p className="font-[590]">Card Number</p>
                 <div className="flex my-3 bg-white items-center drop-shadow-xl shadow-[0px_4px_10px_#00000026] appearance-none border rounded-[20px]">
                   <div className="p-[10px]">
                     <FaRegCreditCard />
@@ -68,7 +71,7 @@ const CardDetails = ({ isOpen, onClose }) => {
               </div>
               <div className="flex w-full gap-3 text-left">
                 <div>
-                  <p className="font-semibold">Expiry Date</p>
+                  <p className="font-[590]">Expiry Date</p>
                   <div className="bg-white flex my-3 items-center drop-shadow-xl shadow-[0px_4px_10px_#00000026]  focus:border-amber-500  border rounded-[20px]">
                     <div className="p-[10px]">
                       <TiCalendar />
@@ -84,7 +87,7 @@ const CardDetails = ({ isOpen, onClose }) => {
                   </div>
                 </div>
                 <div>
-                  <p className="font-semibold">CVV</p>
+                  <p className="font-[590]">CVV</p>
                   <div className="flex bg-white my-3 items-center drop-shadow-xl shadow-[0px_4px_10px_#00000026] appearance-none border rounded-[20px]">
                     <div className="p-[10px]">
                       <FiLock />
@@ -108,7 +111,7 @@ const CardDetails = ({ isOpen, onClose }) => {
               <IoClose size={"1.5rem"} />
             </span>
             <div className="flex w-full justify-between items-center my-[20px]">
-              <p className="font-semibold">Save Card Details</p>
+              <p className="font-[590]">Save Card Details</p>
               <div className="bg-white text-amber-500">
                 <BsToggle2On size={"1.5rem"} />
               </div>
@@ -116,11 +119,11 @@ const CardDetails = ({ isOpen, onClose }) => {
             <div className="flex flex-col justify-center items-center gap-[20px]">
               <p
                 onClick={onClose}
-                className="font-semibold text-amber-500 cursor-pointer"
+                className="font-[590] text-amber-500 cursor-pointer"
               >
                 Use Another Payment Method?
               </p>
-              <div onClick={handleCheckout} className="flex justify-center py-3 w-[50%] cursor-pointer items-center bg-amber-500 px-2 drop-shadow-xl bg-[#ffa5004c] shadow-[0px_4px_10px_#00000026] font-h-3 font-[number:var(--h-3-font-weight)] text-black text-[length:var(--h-3-font-size)] tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
+              <div onClick={handleCheckout} className="flex text-black justify-center py-3 w-[50%] cursor-pointer items-center bg-amber-500 px-2 drop-shadow-xl shadow-[0px_4px_10px_#00000026] font-h-3 font-[number:var(--h-3-font-weight)] text-[length:var(--h-3-font-size)] tracking-[var(--h-3-letter-spacing)] leading-[var(--h-3-line-height)] [font-style:var(--h-3-font-style)]">
                 Checkout
               </div>
             </div>
