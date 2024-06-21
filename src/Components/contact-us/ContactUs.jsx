@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import AboutUSHeader from '../about-us/nav-link/AboutUSHeader'
-import IntroText from './SubComponents/IntroText'
-import Content from './SubComponents/Content'
-import GetInTouch from './SubComponents/GetInTouch'
-import Dashboard from "../about-us/dashboard/Dashboard";
+import Dashboard from '../about-us/dashboard/Dashboard';
+import ContactInfo from './SubComponents/ContactInfo';
+import ContactForm from './SubComponents/ContactForm';
 
-const FAQ = () => {
+const ContactUs = () => {
     const [isDashboardModalOpen, setIsDashboardModalOpen] = useState(false);
 
     const handleToggleModal = () => {
@@ -17,16 +16,15 @@ const FAQ = () => {
     };
 
     return (
-        <div className=''>
+        <div>
             <AboutUSHeader handleToggleModal={handleToggleModal} />
-            <div className='flex flex-col py-[50px] px-[20px] sm:px-[70px] gap-9'>
-                <IntroText />
-                <Content />
-                <GetInTouch/>
+            <div className='grid p-[30px] lg:px-[50px] gap-9 grid-cols-1 sm:grid-cols-2'>
+                <ContactInfo />
+                <ContactForm />
             </div>
             <Dashboard isOpen={isDashboardModalOpen} onClose={handleToggleModalClose} />
         </div>
     )
 }
 
-export default FAQ
+export default ContactUs

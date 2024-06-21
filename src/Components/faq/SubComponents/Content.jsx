@@ -13,12 +13,12 @@ const Content = () => {
   }
 
   return (
-    <div className='h-screen'>
-      <p className='text-lg font-[590]'>Frequency Asked Questions</p>
+    <div className='mt-8'>
+      <hr />
       {data.map((item, i) => (
         <div
           key={i}
-          className={`font-[400] text-[18px] leading-[27.27px] mb-[20px]  text-[#424242] `}
+          className={`font-[400] border-b border-b-gray-300 text-[18px] leading-[27.27px] mb-[20px] text-[#424242] `}
         >
           <div
             onClick={() => toggle(i)}

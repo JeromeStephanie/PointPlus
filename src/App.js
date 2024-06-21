@@ -28,6 +28,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import OrderTracking from './Components/order-tracking/OrderTracking'
 import Map from './Components/order-tracking/SubComponents/Map/Map'
 import { FavoriteProductsProvider } from './Api/contexts/FavoriteProductsContext'
+import ContactUs from './Components/contact-us/ContactUs'
 
 const Layout = () => {
   return (
@@ -83,6 +84,7 @@ const App = () => {
                     <Route path='ordertracking' element={<OrderTracking />} />
                     <Route path='map' element={<Map />} />
                     <Route path='favs' element={<FavoritesPage />} />
+                    <Route path='contact' element={<ContactUs />} />
                   </Route>
                 </Routes>
               </div>

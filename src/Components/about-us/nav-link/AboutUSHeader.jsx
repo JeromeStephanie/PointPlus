@@ -1,20 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Point from "../../../Helper/Point";
 import { Link } from "react-router-dom";
-import Dashboard from "../../home/dashboard/Dashboard";
 import { RxHamburgerMenu } from "react-icons/rx";
 
-const AboutUSHeader = () => {
-  const [isDashboardModalOpen, setIsDashboardModalOpen] = useState(false);
-
-  const handleToggleModal = () => {
-    setIsDashboardModalOpen(true); // Always open the Dashboard
-  };
-
-  const handleToggleModalClose = () => {
-    setIsDashboardModalOpen(false); // Close the Dashboard
-  };
-
+const AboutUSHeader = ({ handleToggleModal }) => {
   return (
     <div className="w-full NavLink px-[50px] h-20 border-b-[1px] border-b-white left-0 sticky top-0 z-50 bg-transparent drop-shadow-xl shadow-[0px_4px_10px_#00000026]">
       <div className="flex flex-col items-center justify-center">
@@ -33,19 +22,16 @@ const AboutUSHeader = () => {
             <div className="w-full flex justify-center items-center">
               <ul className="flex justify-center p-[10px] rounded-[20px] [font-family:var(--logo-text-font-family)] font-semibold bg-amber-500 text-white px-[30px] gap-[20px] items-center drop-shadow-xl shadow-[0px_4px_10px_#00000026]">
                 <li className="cursor-pointer">Company</li>
-                <li className="cursor-pointer">What we do</li>
                 <li className="cursor-pointer">FAQs</li>
                 <li className="cursor-pointer">Blog</li>
-                <li className="cursor-pointer">Contact</li>
+                <Link to={"/contact"}>
+                  <li className="cursor-pointer">Contact</li>
+                </Link>
               </ul>
             </div>
           </div>
         </div>
       </div>
-      <Dashboard
-        isOpen={isDashboardModalOpen}
-        onClose={handleToggleModalClose}
-      />
     </div>
   );
 };

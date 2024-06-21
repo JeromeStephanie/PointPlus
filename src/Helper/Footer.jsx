@@ -73,9 +73,9 @@ const Footer = () => {
               <p className=" transform transition-transform cursor-pointer duration-300 hover:scale-105">
                 Blog
               </p>
-              <p className=" transform transition-transform cursor-pointer duration-300 hover:scale-105">
+              <Link to={"/faq"} className=" transform transition-transform cursor-pointer duration-300 hover:scale-105">
                 FAQ
-              </p>
+              </Link>
               <p className=" transform transition-transform cursor-pointer duration-300 hover:scale-105">
                 Contact Us
               </p>
@@ -130,19 +130,24 @@ const Footer = () => {
           </div> */}
         </div>
       </div>
-      <div className="flex bg-[#585353] justify-center items-center font-[590] p-[30px] py-[30px] text-white lg:px-[50px] sm:justify-end gap-4">
-        <p className=" transform transition-transform cursor-pointer duration-300 hover:scale-105">
-          TERMS & CONDITION
-        </p>
-        <p className=" transform transition-transform cursor-pointer duration-300 hover:scale-105">
-          PRIVACY POLICY
-        </p>
-        <p className=" transform transition-transform cursor-pointer duration-300 hover:scale-105">
-          COOKIE POLICY
-        </p>
-        <p className=" transform transition-transform cursor-pointer duration-300 hover:scale-105">
-          COMPLAINCE
-        </p>
+      <div className="lg:flex bg-[#585353] justify-between items-center font-[590] p-[30px] py-[30px] text-white lg:px-[50px] gap-4">
+        <div className="pb-3 lg:pb-0">
+          2024 &copy; CopyRight PointPlus
+        </div>
+        <div className="flex gap-4 items-center">
+          <p className=" transform transition-transform cursor-pointer duration-300 hover:scale-105">
+            TERMS & CONDITION
+          </p>
+          <p className=" transform transition-transform cursor-pointer duration-300 hover:scale-105">
+            PRIVACY POLICY
+          </p>
+          <p className=" transform transition-transform cursor-pointer duration-300 hover:scale-105">
+            COOKIE POLICY
+          </p>
+          <p className=" transform transition-transform cursor-pointer duration-300 hover:scale-105">
+            COMPLAINCE
+          </p>
+        </div>
       </div>
     </div>
   );

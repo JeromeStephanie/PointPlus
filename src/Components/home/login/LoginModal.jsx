@@ -20,7 +20,7 @@ const LoginModal = ({ isOpen, onClose }) => {
               <SmsForm onClose={onClose} setFormType={setFormType} />
             )}
 
-            {formType === "mail" && <MailForm setFormType={setFormType} />}
+            {formType === "mail" && <MailForm onClose={onClose} setFormType={setFormType} />}
           </motion.div>
         </div>
       )}

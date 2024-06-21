@@ -42,10 +42,12 @@ import chicken from './chicken.png'
 import phone from './phone.png'
 import no_product from './no-product.png'
 import point1 from './point2.png'
+import email from './email.png'
 
 export {
   google,
   success,
+  email,
   point1,
   no_product,
   phone,

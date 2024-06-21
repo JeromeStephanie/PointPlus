@@ -7,12 +7,12 @@ import { RiInformationLine } from "react-icons/ri";
 import { TiShoppingCart, TiGroup } from "react-icons/ti";
 import { RiEBike2Line } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 const Dashboard = ({ isOpen, onClose }) => {
   return (
-    <div>
+    <AnimatePresence>
       {isOpen && (
         <div className="dashboard-modal">
           <motion.div
@@ -126,14 +126,14 @@ const Dashboard = ({ isOpen, onClose }) => {
               <div className="flex justify-center items-center">
 
                 <button className="absolute bottom-6 hover:bg-[#ffa5004c] duration-300 drop-shadow-xl bg-[#ffa500] py-[8px] px-[50px] shadow-[0px_4px_10px_#00000026] font-[590]">
-                Logout
-              </button>
+                  Logout
+                </button>
               </div>
             </div>
           </motion.div>
         </div>
       )}
-    </div>
+    </AnimatePresence>
   );
 };
 

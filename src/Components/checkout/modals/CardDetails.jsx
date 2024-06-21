@@ -37,8 +37,6 @@ const CardDetails = ({ isOpen, onClose }) => {
     setIsSuccessModalOpen(true);
   };
 
-
-
   return (
     <div>
       {isOpen && (
